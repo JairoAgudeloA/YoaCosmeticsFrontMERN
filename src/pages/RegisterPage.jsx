@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import '../assets/styles/components/Register.css'
 
 export const RegisterPage = () => {
   const [username, setUsername] = useState("");
@@ -40,8 +41,8 @@ export const RegisterPage = () => {
   };
 
   return (
-    <div>
-      <section>
+    <div class="grande">
+      <section class="mediano">
         <div>
           <h1>Registrarse</h1>
 
