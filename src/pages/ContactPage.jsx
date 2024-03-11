@@ -29,7 +29,7 @@ export const ContactPage = () => {
     <>
       <section className='form-container-contact'>
       <form onSubmit={handleSubmit} className="contact-form">
-        <h1>Contactanos </h1>
+        <h4>Contactanos </h4>
         <div className="form-group">
           <label htmlFor="name">Nombre:</label>
           <input
