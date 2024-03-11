@@ -1,5 +1,4 @@
 
-
 * 
 {
     margin: 0;
@@ -60,7 +59,7 @@
     
   }
   .search-container button:hover{
-    background-color: rgb(207, 30, 121);
+    background-color: var(--colorhover);
   }
  
   .elementos {

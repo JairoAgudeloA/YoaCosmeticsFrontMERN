@@ -70,8 +70,8 @@ export const LoginPage = () => {
           {isLoading ? 'Ingresando...' : 'Iniciar Sesión'}
         </button>
         <p>
-        ¿Eres Usuario Nuevo?
-      <Link to="/register">Registrate</Link> 
+        ¿Eres Usuario Nuevo? 
+        <Link to="/register">Registrate</Link> 
     </p>
       </form>
     </section>
