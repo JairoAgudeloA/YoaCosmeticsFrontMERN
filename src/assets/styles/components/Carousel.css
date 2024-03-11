@@ -1,0 +1,54 @@
+.carousel {
+    position: relative;
+    overflow: hidden;
+    max-width: 600px;
+    margin: auto;
+    border: 1px solid #f3a0ca;
+    border-radius: 10px;
+
+
+}
+
+.carousel-container {
+    margin-top: 30px;
+    height: auto;
+    width: auto;
+}
+.carousel:hover .slides {
+    animation-play-state: paused;
+}
+
+
+.slides {
+    display: flex;
+    animation: slide 10s infinite;
+    /* Cambia de imagen cada 5 segundos */
+}
+
+.slide {
+    flex: 0 0 100%;
+}
+
+.slide img {
+    width: 100%;
+    height: auto;
+    max-width: 600px;
+}
+
+@keyframes slide {
+    0% {
+        transform: translateX(0);
+    }
+
+    33.333% {
+        transform: translateX(-100%);
+    }
+
+    66.666% {
+        transform: translateX(-200%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}

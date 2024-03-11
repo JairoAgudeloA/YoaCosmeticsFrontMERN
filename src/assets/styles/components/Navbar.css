@@ -1,0 +1,139 @@
+
+
+* 
+{
+    margin: 0;
+    padding: 0;
+  
+  }
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    color: black;
+    padding: 10px 20px;
+    text-align: center;
+    max-width: 100%;
+    /* border-bottom: 1px solid #e5e7eb;  */
+    box-shadow: 0 4px 6px 1px rgba(0, 0, 0, 0.1); /* Sombra más pronunciada */
+    background-color: var(--colorwhite);
+    flex: 1;
+  }
+  
+  .search-container {
+    position: relative;
+    flex: 1;
+    
+  }
+  
+  /* Estilo del campo de entrada */
+  .search-container input {
+    padding: 8px; /* Espaciado interno */
+    border: 1px solid #ccc; /* Borde del campo de entrada */
+    border-radius: 4px; /* Borde redondeado */
+    width: 24rem;
+    outline: none;
+    font-size: 1rem;
+    font-weight: bold;
+    flex: 1;
+  }
+  
+  /* Estilo del botón de búsqueda */
+  .search-container button{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px 15px; /* Espaciado interno */
+    background-color: rgba(112, 34, 74, 1);
+    top: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    color: #fff; /* Color del texto del botón */
+    font-size: 1.5rem;
+    border: none; /* Quitar borde */
+    border-radius: 4px; /* Borde redondeado */
+    cursor: pointer; /* Cambiar el cursor al pasar por encima */
+    width: 6rem;
+    flex: 1;
+    
+  }
+  .search-container button:hover{
+    background-color: rgb(207, 30, 121);
+  }
+ 
+  .elementos {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .elementos li {
+    margin-right: 20px;
+    font-size: 20px;
+  }
+  
+  .elementos li a {
+    color: #0f0b0b;
+    text-decoration: solid;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+  }
+  .menu-vertical{
+    position:absolute;
+    display: none;
+    list-style: none;
+    background-color:  rgb(255, 249, 249);
+    border-radius: 10px;
+    border: 1px solid black;
+  }
+  .menu-vertical li{
+    align-items: center;
+    justify-content: center;
+    
+    justify-content: center;
+    align-items: center;
+  }
+  .usermenu:hover .menu-vertical{
+    display: block;
+  }
+  .menu-vertical li{
+    padding: 6px;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+    }
+  
+    .search-bar {
+      margin-top: 20px;
+      height: auto;
+      width: auto;
+  
+    }
+  
+    .elementos {
+      margin-top: 20px;
+      flex-direction: column;
+    }
+  
+    .elementos li {
+      margin-right: 0;
+      margin-bottom: 10px;
+  
+    }
+  
+    .iniciar {
+      flex-direction: column;
+    }
+  
+    .Carrito {
+      flex-direction: column;
+    }
+  }
