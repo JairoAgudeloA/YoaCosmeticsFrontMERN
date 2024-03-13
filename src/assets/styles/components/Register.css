@@ -41,7 +41,7 @@
   
   /* Estilos para el botón this*/
   form button {
-    width: 100%; /* Ancho del botón igual al de los campos de entrada */
+    width: 40%; /* Ancho del botón igual al de los campos de entrada */
     padding: 10px;
     background-color: var(--colorpurple); /* Cambia el color de fondo según tus preferencias */
     color: #fff;
@@ -50,6 +50,9 @@
     cursor: pointer;
     margin-bottom: 10px; /* Añade margen inferior para separar los elementos */
     box-sizing: border-box;
+    margin-left: 85px;
+   
+    
  }
   
   form button:hover {

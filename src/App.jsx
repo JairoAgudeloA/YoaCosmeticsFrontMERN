@@ -8,6 +8,8 @@ import CartPage from "./pages/CartPage";
 import FavoritePage from "./pages/FavoritePage";
 import { Footer } from "./components/Footer";
 import "./index.css"
+import { EditPerfil } from "./pages/EditPerfil";
+
 
 function App() {
   
@@ -23,10 +25,11 @@ function App() {
       <Route path="/contactus" element ={<ContactPage/>}/>
       <Route path="/login" element= {<LoginPage/>}/>
       <Route path="/register" element= {<RegisterPage/>}/>
-
+      
       {/* Futuras rutas de usuarios logueados */}
-
-
+      
+      <Route path="/profile" element= {<EditPerfil/>}/>
+      
 
       {/* Futuras rutas de los admin */}
       

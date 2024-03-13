@@ -42,9 +42,7 @@ main {
     font-family: Arial, Helvetica;
 }
 .contenido:hover{
-    background-color: rgb(238, 245, 245);
-    transform: scale(1.1);
-    border-radius: 5px;
+    box-shadow: var(--boxshadow);
 }
 
 .contenido img {
@@ -66,11 +64,11 @@ main {
 
 button {
     background-color: rgba(112, 34, 74, 1);
-    border-radius: 30px;
+    border-radius: 5px;
     padding: 9px 20px;
     font-size: 12px;
     cursor: pointer;
-    border-color: rgb(233, 7, 214);
+    border: none;
     color: azure;
     
 }
