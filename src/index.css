@@ -1,0 +1,11 @@
+
+
+:root{
+  --colorpurple:rgba(112, 34, 74, 1);
+  --colorwhite:rgb(255, 249, 249);
+  --boxshadow:10px 10px 10px 10px rgba(0, 0, 0, 0.1); /*este es un shadow para el form*/
+  --colorhover:rgb(207, 30, 121);
+}
+.root{
+  background-color: var(--colorwhite);
+}

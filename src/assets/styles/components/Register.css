@@ -1,0 +1,97 @@
+/* Estilos para el contenedor principal */
+.grande {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+  }
+  
+  /* Estilos para el formulario */
+  form {
+    width: 300px; /* Ancho del formulario */
+    padding: 20px;
+    margin: 10px;
+  }
+  
+  h1 {
+    text-align: center;
+  }
+  
+
+  form div {
+    margin-bottom: 10px;
+    
+  }
+  
+  form label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  form input {
+    width: calc(100% - 20px); /* Ancho igual al del formulario menos el padding */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    border: 1px solid black;
+  }
+  
+  /* Estilos para el botón this*/
+  form button {
+    width: 40%; /* Ancho del botón igual al de los campos de entrada */
+    padding: 10px;
+    background-color: var(--colorpurple); /* Cambia el color de fondo según tus preferencias */
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-bottom: 10px; /* Añade margen inferior para separar los elementos */
+    box-sizing: border-box;
+    margin-left: 85px;
+   
+    
+ }
+  
+  form button:hover {
+    background-color: #e918de;
+  }
+  
+  /* Estilos para el enlace */
+  form a {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  form a:hover {
+    text-decoration: underline;
+  }
+  
+  .mediano {
+    border-radius: 5px;
+    background-color: #fdfdfd;
+    margin: 60px auto; /* Margen superior e inferior de 10px y centrado horizontalmente */
+    margin-top: 10px;
+    padding-bottom: 10px;
+  }
+  
+  .mediano h1 {
+    padding-top: 20px;
+  }
+  
+  .mediano p {
+    margin-bottom: 20px;
+    text-align: center;
+    padding-top: 1px;
+  }
+
+.mediano:hover  {
+  box-shadow: var(--boxshadow);
+
+}
+  
