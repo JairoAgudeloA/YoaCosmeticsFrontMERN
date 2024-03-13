@@ -43,7 +43,6 @@ export const LoginPage = () => {
 
   return (
     <section class="form-container">
-      
       <form onSubmit={handleSubmit}>
         <h1>Iniciar Sesión</h1>
         <div>
@@ -57,10 +56,10 @@ export const LoginPage = () => {
           />
         </div>
         <div>
-          <label htmlFor="password">Contraseña</label>
+          <label htmlFor="password" >Contraseña</label>
           <input
             type="password"
-            id="password"
+            id ="password"
             placeholder="Ingresa Contraseña"
             value={password}
             onChange={handlePasswordChange}
