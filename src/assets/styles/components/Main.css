@@ -63,7 +63,6 @@ main {
 }
 
 button {
-    background-color: rgba(112, 34, 74, 1);
     border-radius: 5px;
     padding: 9px 20px;
     font-size: 12px;
@@ -71,8 +70,4 @@ button {
     border: none;
     color: azure;
     
-}
-
-button:hover {
-    background-color:rgb(207, 30, 121);
 }
