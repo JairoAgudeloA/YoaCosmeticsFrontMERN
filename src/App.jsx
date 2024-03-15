@@ -7,8 +7,10 @@ import { Navbar } from "./components/Navbar";
 import CartPage from "./pages/CartPage";
 import FavoritePage from "./pages/FavoritePage";
 import { Footer } from "./components/Footer";
-import "./index.css"
+import { WhatsAppButton } from "./components/WhatsAppButton";
 import { EditPerfil } from "./pages/EditPerfil";
+import { CategoryPage } from "./pages/CategoryPage";
+import "./index.css"
 
 
 function App() {
@@ -25,6 +27,7 @@ function App() {
       <Route path="/contactus" element ={<ContactPage/>}/>
       <Route path="/login" element= {<LoginPage/>}/>
       <Route path="/register" element= {<RegisterPage/>}/>
+      <Route path="/category" element= {<CategoryPage/>}/>
       
       {/* Futuras rutas de usuarios logueados */}
       
@@ -34,7 +37,7 @@ function App() {
       {/* Futuras rutas de los admin */}
       
     </Routes>
-
+   <WhatsAppButton/> 
     <Footer/>
 
       

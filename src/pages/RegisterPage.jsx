@@ -45,7 +45,6 @@ export const RegisterPage = () => {
       <section class="mediano">
         <div>
           <h1>Registrarse</h1>
-
           <form onSubmit={handleSubmit}>
             <div>
               <label htmlFor="name">Nombre</label>
@@ -95,7 +94,6 @@ export const RegisterPage = () => {
               {isLoading ? "Registrando..." : "Registrar"}
             </button>
           </form>
-
           <div>
             <p>
               ¿Ya tienes una cuenta?{" "}
