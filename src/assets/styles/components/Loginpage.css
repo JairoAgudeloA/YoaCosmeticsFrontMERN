@@ -8,15 +8,6 @@
     flex-direction: column;
     
   }
-  /* Estilos para el contenedor principal */
-.grande {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-
-}
   
   .form-container form {
     width: 300px;
@@ -84,10 +75,6 @@
   
   .form-container form:hover {
     box-shadow: var(--boxshadow);
-  }
-
-    cursor: pointer;
-    margin: 0 auto;
   }
 
 

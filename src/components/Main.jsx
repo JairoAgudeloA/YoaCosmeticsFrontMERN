@@ -9,50 +9,50 @@ export const Main = () => {
     return(
         <>
         <main>
-        <div class="contenido-container">
-            <div class="contenido">
+        <div className="contenido-container">
+            <div className="contenido">
                 <img src={imagen}  alt="Imagen 1"/>
                 <h2>Kit de Cuidado</h2>
                 <p>$ 7.000</p>
                 <button>AÑADIR</button>
             </div>
             
-            <div class="contenido">
+            <div className="contenido">
                 <img src= {imagen} alt="Imagen 1"/>
                 <h2>Kit de Cuidado</h2>
                 <p>$ 7.000</p>
                 <button>AÑADIR</button>
             </div>
 
-            <div class="contenido">
+            <div className="contenido">
                 <img src={imagen}  alt="Imagen 1"/>
                 <h2>Kit de Cuidado</h2>
                 <p>$ 7.000</p>
                 <button>AÑADIR</button>
             </div>
 
-            <div class="contenido">
+            <div className="contenido">
                 <img src={imagen}  alt="Imagen 1"/>
                 <h2>Kit de Cuidado</h2>
                 <p>$ 7.000</p>
                 <button>AÑADIR</button>
             </div>
 
-            <div class="contenido">
+            <div className="contenido">
                 <img src={labial} alt="Imagen 1"/>
                 <h2>Kit de Cuidado</h2>
                 <p>$ 7.000</p>
                 <button>AÑADIR</button>
             </div>
 
-            <div class="contenido">
+            <div className="contenido">
                 <img src={labial} alt="Imagen 1"/>
                 <h2>Kit de Cuidado</h2>
                 <p>$ 7.000</p>
                 <button>AÑADIR</button>
             </div>
 
-            <div class="contenido">
+            <div className="contenido">
                 <img src={labial} alt="Imagen 1"/>
                 <h2>Kit de Cuidado</h2>
                 <p>$ 7.000</p>
@@ -60,7 +60,7 @@ export const Main = () => {
             </div>
 
 
-            <div class="contenido">
+            <div className="contenido">
                 <img src={labial} alt="Imagen 1"/>
                 <h2>Kit de Cuidado</h2>
                 <p>$ 7.000</p>
