@@ -29,6 +29,7 @@ function App() {
           <Route path="/contactus" element={<ContactPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/category" element={<CategoryPage/>}/>
 
           {/* Futuras rutas de usuarios logueados */}
 
@@ -38,36 +39,10 @@ function App() {
           {/* Futuras rutas de los admin */}
 
         </Routes>
-
-        <Footer />
-      </AuthProvider>
-
-
-
-    <Navbar/>
-    <Outlet/>
-
-    <Routes>
-      <Route path="/" element= {<HomePage/>}/>
-      <Route path="/cart" element= {<CartPage/>}/>
-      <Route path="/favorites" element= {<FavoritePage/>}/>
-      <Route path="/contactus" element ={<ContactPage/>}/>
-      <Route path="/login" element= {<LoginPage/>}/>
-      <Route path="/register" element= {<RegisterPage/>}/>
-      <Route path="/category" element= {<CategoryPage/>}/>
-      
-      {/* Futuras rutas de usuarios logueados */}
-      
-      <Route path="/profile" element= {<EditPerfil/>}/>
-      
-
-      {/* Futuras rutas de los admin */}
-      
-    </Routes>
+        
    <WhatsAppButton/> 
     <Footer/>
-
-
+      </AuthProvider>    
     </>
   )
 }
