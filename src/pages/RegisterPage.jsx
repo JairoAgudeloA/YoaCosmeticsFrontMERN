@@ -1,50 +1,69 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import '../assets/styles/components/Register.css'
+import { useForm } from 'react-hook-form';
+import { useAuth } from "./../context/AuthContext";
 
 export const RegisterPage = () => {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate();
+  
+  const { register, handleSubmit, formState: { errors } } = useForm();//Estas son las funciones que nos provee useForm
+  const { signup, errors: registerErrors, user } = useAuth();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsLoading(true);
+  // const navigate = useNavigate();
 
-    try {
-      // Aquí enviarías la solicitud POST a tu API para registrar al usuario
-      // Utiliza fetch, Axios u otra librería para realizar la solicitud
-      const response = await fetch("URL_DE_TU_API/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username, email, password }),
-      });
+  // useEffect(() => {
+  //   if (user) {
+  //     navigate('/');
+  //   }
+  // }, [user, navigate]);
 
-      if (response.ok) {
-        // Si la solicitud es exitosa, puedes redirigir al usuario a la página de inicio de sesión
-        navigate("/login");
-        console.log("Usuario registrado exitosamente");
-      } else {
-        // Si hay un error en la solicitud, muestra un mensaje de error
-        console.error("Error al registrar usuario:", response.statusText);
-      }
-    } catch (error) {
-      console.error("Error al registrar usuario:", error);
-    }
-
-    setIsLoading(false);
-  };
+  const onSubmit = handleSubmit(async (value) => {
+    await signup(value);
+  });
 
   return (
-    <div class="grande">
-      <section class="mediano">
-        <div>
+    <>
+      <section className="form-container">
+        {registerErrors.map((error, i) => (
+          <p key={i} className="error-message">{error}</p>
+        ))}
+        <form onSubmit={onSubmit}>
           <h1>Registrarse</h1>
+
+          <div>
+            <label htmlFor="name">Nombre</label>
+            <input
+              type="text"
+              id="name"
+              placeholder="Ingrese Nombre"
+              {...register("username", { required: true })}
+            />
+            {errors.username && <p className="error-message">Nombre es requerido</p>}
+          </div>
+
+          <div>
+            <label htmlFor="email">Correo Electrónico</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="Ingrese Correo Electrónico"
+              {...register("email", { required: true })}
+            />
+            {errors.email && <p className="error-message">Correo Electrónico es requerido</p>}
+          </div>
+
+          <div>
+            <label htmlFor="password">Contraseña</label>
+            <input
+              type="password"
+              id="password"
+              placeholder="Ingrese Contraseña"
+              {...register("password", { required: true })}
+            />
+            {errors.password && <p className="error-message">Contraseña es requerida</p>}
+          </div>
+
+
           <form onSubmit={handleSubmit}>
             <div>
               <label htmlFor="name">Nombre</label>
@@ -94,17 +113,27 @@ export const RegisterPage = () => {
               {isLoading ? "Registrando..." : "Registrar"}
             </button>
           </form>
+
           <div>
-            <p>
-              ¿Ya tienes una cuenta?{" "}
-              <Link to="/login">
-                Iniciar Sesión
-              </Link>
-            </p>
+            <label htmlFor="confirmPassword">Confirmar Contraseña</label>
+            <input
+              type="password"
+              id="confirmPassword"
+              placeholder="Confirme Contraseña"
+              {...register("confirmPassword", { required: true })}
+            />
+            {errors.confirmPassword && <p className="error-message">Confirmar Contraseña es requerida</p>}
           </div>
-        </div>
+
+          <button type="submit">Registrarse</button>
+          <p>
+            ¿Ya tienes una cuenta?
+            <Link to="/login">
+              Iniciar Sesión</Link></p>
+        </form>
       </section>
-    </div>
+    </>
   );
+
 };
 

@@ -2,20 +2,21 @@ import React, { useState } from 'react'
 import '../assets/styles/components/Navbar.css'
 import { AiOutlineHome, AiOutlineShoppingCart, AiOutlineUser, AiOutlineMessage, AiOutlineSearch } from "react-icons/ai";
 // import { FaHeart } from "react-icons/fa";
-
+import { useAuth } from '../context/AuthContext';
 import { Link } from 'react-router-dom'
 
 export const Navbar = () => {
-   const {userLoggin, setUserLoggin } = useState()//privisional 
+
+   const { user , isAuthenticated , logout} = useAuth();
+   console.log(isAuthenticated, user);
+
    return (
       <>
          <nav className="navbar">
-
             <ul className="elementos">
                <li><Link to="/"><h1>Yoa Cosmetics</h1></Link></li>
-
                <li>
-                  <div class="search-container">
+                  <div className="search-container">
                      <input type="text" placeholder="Buscar Productos..." />
                      <button type="submit"><AiOutlineSearch /></button>
                   </div>
@@ -27,17 +28,18 @@ export const Navbar = () => {
                <li><Link to="/contactus"><AiOutlineMessage />Contactenos</Link></li>
                <li><Link to="/category"><AiOutlineMessage />Categorias</Link></li>
                <li className='usermenu'><AiOutlineUser />
-               {userLoggin?(
+               {isAuthenticated?(
                   <ul className='menu-vertical'>
                      <li><Link to="/profile">Perfil</Link></li>
-                     <li><Link to="/logout">Cerrar Sesión</Link></li>
+                     <li><Link to="/" onClick={() => logout()}>Cerrar Sesión</Link></li>
                   </ul>
                ):(
                   <ul className='menu-vertical'>
                      <li><Link to="/login">Iniciar Sesion</Link></li>
                      <li><Link to="/register">Registrarse</Link></li>
                   </ul>
-               )} {userLoggin && isAdmin &&( 
+               )} 
+               {/* {isAuthenticated && user.role === admin &&( 
                   <ul className='menu-vertical'>
                      <li><Link to="/admin/product">Productos</Link></li>
                      <li><Link to="/admin/users">Usuarios</Link></li>
@@ -46,7 +48,7 @@ export const Navbar = () => {
                   </ul>
                )
 
-               }
+               } */}
                </li>
             </ul>
 
