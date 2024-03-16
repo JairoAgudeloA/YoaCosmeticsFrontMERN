@@ -1,28 +1,40 @@
 /* Estilos para el contenedor principal */
-.grande {
+/* .grande {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
-
-  }
-  
-  /* Estilos para el formulario */
-  form {
-    width: 300px; /* Ancho del formulario */
-    padding: 20px;
-    margin: 10px;
-  }
-  
-  h1 {
-    text-align: center;
-  }
-  
-
-  form div {
-    margin-bottom: 10px;
     
+    background-size: cover;
+    background-position: center;
+    flex-direction: column;
+  } */
+  .form-container form {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+    border-radius: 5px; 
+    padding: 50px; 
+    padding-top: 40px;
+    
+  }
+  .form-container h1 {
+    margin-bottom: 20px; 
+    
+  }
+
+  .form-container p {
+    color: rgb(7, 10, 10);
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+  }
+  .form-container form div {
+    margin-bottom: 15px;
+    width: 100%;
   }
   
   form label {
@@ -30,68 +42,43 @@
     margin-bottom: 5px;
   }
   
-  form input {
-    width: calc(100% - 20px); /* Ancho igual al del formulario menos el padding */
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    margin-bottom: 10px;
-    border: 1px solid black;
+  .form-container form div {
+    margin-bottom: 15px;
+    width: 100%;
   }
   
-  /* Estilos para el botón this*/
-  form button {
-    width: 40%; /* Ancho del botón igual al de los campos de entrada */
-    padding: 10px;
-    background-color: var(--colorpurple); /* Cambia el color de fondo según tus preferencias */
-    color: #fff;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    margin-bottom: 10px; /* Añade margen inferior para separar los elementos */
-    box-sizing: border-box;
-    margin-left: 85px;
-   
-    
- }
-  
-  form button:hover {
-    background-color: #e918de;
+  .form-container form label {
+    margin-bottom: 1px;
   }
   
-  /* Estilos para el enlace */
+  .form-container form input{
+    width: calc(100% - 10px);
+    padding: 11px;
+    margin-top: 10px;
+    border-radius: 4px;
+    border: 1px solid #181616;
+  }
   form a {
     display: block;
-    text-align: center;
-    margin-top: 20px;
+    align-items: center;
     color: #007bff;
     text-decoration: none;
+    justify-content: center;
   }
   
-  form a:hover {
-    text-decoration: underline;
+  .form-container form button {
+    width: 50%;
+    padding: 11px;
+    border: none;
+    border-radius: 4px;
+    background-color:var(--colorpurple);
+    color: var(--colorwhite);
+    cursor: pointer;
+    margin: 0 auto;
   }
-  
-  .mediano {
-    border-radius: 5px;
-    background-color: #fdfdfd;
-    margin: 60px auto; /* Margen superior e inferior de 10px y centrado horizontalmente */
-    margin-top: 10px;
-    padding-bottom: 10px;
+  .form-container form button:hover {
+    background-color: var(--colorhover);
   }
-  
-  .mediano h1 {
-    padding-top: 20px;
+  .form-container form:hover {
+    box-shadow: var(--boxshadow);
   }
-  
-  .mediano p {
-    margin-bottom: 20px;
-    text-align: center;
-    padding-top: 1px;
-  }
-
-.mediano:hover  {
-  box-shadow: var(--boxshadow);
-
-}
-  
