@@ -9,3 +9,11 @@
 .root{
   background-color: var(--colorwhite);
 }
+
+button{
+  background-color: var(--colorpurple);
+  color: var(--colorwhite);
+}
+button:hover{
+  background-color: var(--colorhover);
+}
