@@ -1,18 +1,37 @@
 import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useCategory } from '../context/CategoryContext';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate,useParams} from 'react-router-dom';
 
 
 const CategoryAdminFormPage = () => {
-    const { register, handleSubmit,formState: {errors} } = useForm();
-    const {createCategory} = useCategory();
-
-    const onSubmit = handleSubmit( (data) => {    
-        createCategory(data);
-        console.log(data)
-    });
+    const { register, handleSubmit,formState: {errors}, setValue } = useForm();
+    const {createCategory, getCategory,updateCategory} = useCategory();
     const navigate = useNavigate();
+    const params = useParams();
+
+    useEffect(() => {
+        async function loadCategory(){
+            if(params.id){
+                const category = await getCategory(params.id);
+                console.log(category)
+                setValue('name', category.name);
+                setValue('description', category.description);
+            }
+        }
+        loadCategory();
+    }, []);
+
+    const onSubmit = handleSubmit( (data) => { 
+        if (params.id) {
+            updateCategory(params.id, data);
+        }else{
+            createCategory(data);
+        }
+        console.log(data)
+        navigate('/categories');
+    });
+    
 
     return (
         <>

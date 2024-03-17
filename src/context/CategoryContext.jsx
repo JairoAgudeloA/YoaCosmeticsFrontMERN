@@ -1,6 +1,6 @@
 import { useState ,useEffect} from "react";
 import { createContext, useContext} from "react";
-import { createCategoryRequest, getCategoriesRequest } from './../api/categories.js';
+import { createCategoryRequest, getCategoriesRequest,deleteCategoryRequest ,getCategoryRequest,updateCategoryRequest} from './../api/categories.js';
 
 
 export const CategoryContext = createContext();//crear el contexto
@@ -49,14 +49,43 @@ export function CategoryProvider({ children }) {
         }
     }
     
+    const deleteCategory = async (id) => {
+        try {
+            const res = await deleteCategoryRequest(id);
+            if(res.status === 204) setCategories(categories.filter((category) => category._id !== id));
+            console.log(res.data);
+            // getCategories();
+        } catch (error) {
+            console.error(error.data.message);
+        }
+    }
+    const getCategory = async (id) => {
+        try {
+            const res = await getCategoryRequest(id);
+            console.log(res.data);
+            return res.data;
+        } catch (error) {
+            console.error(error.data.message);
+        }
+    }
+    const updateCategory = async (id,category) => {
+        try {
+            const res = await updateCategoryRequest(id,category);
+            console.log(res.data);
+        } catch (error) {
+            console.error(error.data.message);
+        }
+    }
 
     return (
         <CategoryContext.Provider 
           value={{
             categories,
             getCategories,
-                        
+            deleteCategory,
             createCategory,
+            getCategory,
+            updateCategory
 
         }}>
         {children}

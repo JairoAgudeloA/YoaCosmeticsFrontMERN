@@ -3,7 +3,7 @@ import { useCategory } from '../context/CategoryContext'
 import { Link } from 'react-router-dom';
 
 const CategoriesAdminPage = () => {
-  const {categories,getCategories} = useCategory();
+  const {categories,getCategories,deleteCategory} = useCategory();
 
   useEffect(() => {
     getCategories();
@@ -28,16 +28,21 @@ const CategoriesAdminPage = () => {
               <th>Nombre</th>
               <th>Descripción</th>
               <th>Acciones</th>
+              <th><Link to="/category"><button>Crear Categoría</button></Link></th>
             </tr>
           </thead>
           <tbody>
-            {categories.map((categories) => (
-              <tr key={categories._id}>
-                <td>{categories.name}</td>
-                <td>{categories.description}</td>
+            {categories.map((category) => (
+              <tr key={category._id}>
+                <td>{category.name}</td>
+                <td>{category.description}</td>
                 <td>
-                  <button>Editar</button>
-                  <button>Borrar</button>
+                  <Link to={`/category/${category._id}`}><button>Editar</button></Link>
+
+                  <button
+                  onClick={() =>{
+                    deleteCategory(category._id)
+                  }}>Borrar</button>
                 </td>
               </tr>
             ))}
