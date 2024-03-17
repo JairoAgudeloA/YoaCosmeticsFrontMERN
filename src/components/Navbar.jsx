@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 
 export const Navbar = () => {
 
-   const { user , isAuthenticated , logout} = useAuth();
+   const { user, isAuthenticated , logout} = useAuth();
    console.log(isAuthenticated, user);
 
    return (
