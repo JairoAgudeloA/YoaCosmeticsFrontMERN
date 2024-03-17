@@ -43,7 +43,7 @@ function App() {
             {/* Futuras rutas de los admin */}
             <Route path="/categories" element={<CategoriesAdminPage />} /> {/* Ruta para ver todas las categorias */}
             <Route path="/category" element={<CategoryAdminFormPage />} /> {/* Ruta para crear una categoria */}
-            <Route path="/categories/:id" element={<CategoryAdminFormPage />} /> {/* Ruta para editar una categoria */}
+            <Route path="/category/:id" element={<CategoryAdminFormPage />} /> {/* Ruta para editar una categoria */}
 
           </Routes>
           <WhatsAppButton />
