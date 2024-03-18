@@ -35,9 +35,9 @@ const CategoryAdminFormPage = () => {
 
     return (
         <>
-            <section>
+            <section className='form-container'>
                 <form onSubmit={onSubmit}>
-                    <h1>Crear Categoria</h1>
+                    {params.id ? <h1>Editar Categoria</h1> : <h1>Crear Categoria</h1>}
                     <div>
                         <label htmlFor="name">Nombre</label>
                         <input
@@ -56,8 +56,9 @@ const CategoryAdminFormPage = () => {
                             placeholder="Ingrese Descripción de la Categoria"
                             {...register('description', { required: true })}
                         />
+                        {errors.name && <span>Este campo es requerido</span>}
                     </div>
-                    <button type="submit">Crear</button>
+                    {params.id ? <button type="submit">Editar</button> : <button type="submit">Crear</button>}
                     <button onClick={() => navigate('/categories')}>Cancelar</button>
                 </form>
             </section>
