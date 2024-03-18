@@ -25,8 +25,8 @@ export const Navbar = () => {
                <li><Link to="/"><AiOutlineHome />Inicio</Link></li>
                {/* <li><Link to="/favorites"><FaHeart/>Favoritos</Link></li> */}
                <li><Link to="/cart"><AiOutlineShoppingCart />Carrito</Link></li>
-               <li><Link to="/contactus"><AiOutlineMessage />Contactenos</Link></li>
-               <li><Link to="/category"><AiOutlineMessage />Categorias</Link></li>
+               {/* <li><Link to="/contactus"><AiOutlineMessage />Contactenos</Link></li>
+               <li><Link to="/category"><AiOutlineMessage />Categorias</Link></li> */}
                <li className='usermenu'><AiOutlineUser />
                {isAuthenticated?(
                   <ul className='menu-vertical'>

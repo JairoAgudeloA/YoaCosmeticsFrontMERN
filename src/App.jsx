@@ -13,10 +13,13 @@ import { EditPerfil } from "./pages/EditPerfil";
 import "./index.css"
 import CategoriesAdminPage from "./pages/CategoriesAdminPage";
 import CategoryAdminFormPage from "./pages/CategoryAdminFormPage";
+import ProductsAdminPage from "./pages/ProductsAdminPage";
+import ProductAdminFormPage from "./pages/ProductAdminFormPage";
 
 {/*aqui estaran importados los contextss */}
 import { AuthProvider } from "./context/AuthContext"
 import { CategoryProvider } from "./context/CategoryContext";
+import { ProductProvider } from "./context/ProductContext";
 function App() {
 
   return (
@@ -24,13 +27,15 @@ function App() {
 
       <AuthProvider>
         <CategoryProvider>
+          <ProductProvider>
+
           <Navbar />
           <Outlet />
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/cart" element={<CartPage />} />
             <Route path="/favorites" element={<FavoritePage />} />
-            <Route path="/contactus" element={<ContactPage />} />
+            {/* <Route path="/contactus" element={<ContactPage />} /> */}
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             {/* <Route path="/category" element={<CategoryPage />} /> */}
@@ -45,9 +50,14 @@ function App() {
             <Route path="/category" element={<CategoryAdminFormPage />} /> {/* Ruta para crear una categoria */}
             <Route path="/category/:id" element={<CategoryAdminFormPage />} /> {/* Ruta para editar una categoria */}
 
+            <Route path="/products" element={<ProductsAdminPage />} /> {/* Ruta para ver todas las productos */}
+            <Route path="/product" element={<ProductAdminFormPage />} /> {/* Ruta para crear una producto */}
+            <Route path="/product/:id" element={<ProductAdminFormPage />} /> {/* Ruta para editar una producto */}
           </Routes>
           <WhatsAppButton />
           <Footer />
+
+          </ProductProvider>
         </CategoryProvider>
       </AuthProvider>
     </>
