@@ -4,7 +4,13 @@ export const getProductsRequest = async () => axios.get(`/products`);//obtener t
 
 export const getProductRequest = async (id) => axios.get(`/product/${id}`);//obtener un producto
 
-export const createProductRequest = async (product) => axios.post(`/product`, product);//crear un producto
+export const createProductRequest = async (product) => {
+    return axios.post(`/product`, product, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+  };
 
 export const updateProductRequest = async (id,product) => axios.put(`/product/${id}`, product);//actualizar un producto
 
