@@ -33,12 +33,31 @@ const ProductAdminFormPage = () => {
   }, []);
 
   const onSubmit = handleSubmit(async (data) => {
-    if (params.id) {
-      await updateProduct(params.id, data);
-    } else {
-      await createProduct(data);
+    const formData = new FormData();
+  
+    // Itera sobre cada campo en los datos del formulario
+    for (const key in data) {
+      if (data.hasOwnProperty(key)) {
+        // Si el campo es 'productImage', añade el archivo al formData
+        if (key === 'productImage') {
+          formData.append(key, data[key][0]);
+        } else {
+          // Para todos los demás campos, añade el valor al formData
+          formData.append(key, data[key]);
+        }
+      }
     }
-    navigate('/products');
+  
+    try {
+      if (params.id) {
+        await updateProduct(params.id, formData);
+      } else {
+        await createProduct(formData);
+      }
+      navigate('/products');
+    } catch (error) {
+      // Maneja el error
+    }
   }); 
 
   return (
