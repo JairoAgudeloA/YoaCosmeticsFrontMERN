@@ -1,6 +1,7 @@
 import { createContext, useContext, useState,useEffect } from "react";
 import { loginRequest, registerRequest } from "../api/auth";
 import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext();
 
@@ -15,6 +16,7 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [errors, setErrors] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   // clear errors after 3 seconds
   useEffect(() => {
@@ -29,11 +31,11 @@ export const AuthProvider = ({ children }) => {
   const signup = async (user) => {
     try {
       const res = await registerRequest(user);
-      if (res.status === 200) {
+        navigate("/login"); 
+        alert("Usuario creado con éxito");
         setUser(res.data);
-      }
     } catch (error) {
-      console.log(error.response.data);
+      alert(error.response.data);
       setErrors(error.response.data);
     }
   };

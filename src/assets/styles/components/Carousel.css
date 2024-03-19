@@ -5,14 +5,14 @@
     margin: auto;
     border: 1px solid #f3a0ca;
     border-radius: 10px;
-
-
+    z-index: -1;
 }
 
 .carousel-container {
     margin-top: 30px;
     height: auto;
     width: auto;
+    z-index: -1;
 }
 .carousel:hover .slides {
     animation-play-state: paused;

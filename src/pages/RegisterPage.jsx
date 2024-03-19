@@ -7,15 +7,9 @@ import { useAuth } from "./../context/AuthContext";
 export const RegisterPage = () => {
   
   const { register, handleSubmit, formState: { errors } } = useForm();//Estas son las funciones que nos provee useForm
-  const { signup, errors: registerErrors, user } = useAuth();
+  const { signup, errors: registerErrors } = useAuth();
+  const navigate = useNavigate();
 
-  // const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   if (user) {
-  //     navigate('/');
-  //   }
-  // }, [user, navigate]);
 
   const onSubmit = handleSubmit(async (value) => {
     await signup(value);
@@ -24,9 +18,9 @@ export const RegisterPage = () => {
   return (
     <>
       <section className="form-container">
-        {registerErrors.map((error, i) => (
+        {/* {registerErrors.map((error, i) => (
           <p key={i} className="error-message">{error}</p>
-        ))}
+        ))} */}
         <form onSubmit={onSubmit}>
           <h1>Registrarse</h1>
 

@@ -20,12 +20,16 @@ import ProductAdminFormPage from "./pages/ProductAdminFormPage";
 import { AuthProvider } from "./context/AuthContext"
 import { CategoryProvider } from "./context/CategoryContext";
 import { ProductProvider } from "./context/ProductContext";
+import { UserProvider } from "./context/UserContext";
+import UsersAdminPage from "./pages/UsersAdminPage";
+import UserAdminFormPage from "./pages/UserAdminFormPage";
 function App() {
 
   return (
     <>
 
       <AuthProvider>
+        <UserProvider>
         <CategoryProvider>
           <ProductProvider>
 
@@ -53,12 +57,17 @@ function App() {
             <Route path="/products" element={<ProductsAdminPage />} /> {/* Ruta para ver todas las productos */}
             <Route path="/product" element={<ProductAdminFormPage />} /> {/* Ruta para crear una producto */}
             <Route path="/product/:id" element={<ProductAdminFormPage />} /> {/* Ruta para editar una producto */}
+
+            <Route path="/users" element={<UsersAdminPage />} /> {/* Ruta para ver todas las usuarios */}
+            <Route path="/user" element={<UserAdminFormPage />} /> {/* Ruta para crear una usuario */}
+            <Route path="/user/:id" element={<UserAdminFormPage />} /> {/* Ruta para editar una usuario */}
           </Routes>
           <WhatsAppButton />
           <Footer />
 
           </ProductProvider>
         </CategoryProvider>
+        </UserProvider>
       </AuthProvider>
     </>
   )
