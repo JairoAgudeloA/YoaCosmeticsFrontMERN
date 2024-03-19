@@ -41,10 +41,9 @@ const ProductsAdminPage = () => {
                 <td>{product.price}</td>
                 <td>{product.description}</td>
                 <td>{product.productImage}</td>
-                <td>{product.category}</td>
+                <td>{product.category.name}</td>
                 <td>
                   <Link to={`/product/${product._id}`}><button>Editar</button></Link>
-
                   <button
                   onClick={() =>{
                     deleteProduct(product._id)

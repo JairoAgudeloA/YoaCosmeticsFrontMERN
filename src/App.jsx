@@ -54,6 +54,9 @@ function App() {
             <Route path="/category" element={<CategoryAdminFormPage />} /> {/* Ruta para crear una categoria */}
             <Route path="/category/:id" element={<CategoryAdminFormPage />} /> {/* Ruta para editar una categoria */}
 
+            
+            {/* <Route path="/category/:id/products" element={< />} /> Ruta para ver todas las productos de una categoria */}
+
             <Route path="/products" element={<ProductsAdminPage />} /> {/* Ruta para ver todas las productos */}
             <Route path="/product" element={<ProductAdminFormPage />} /> {/* Ruta para crear una producto */}
             <Route path="/product/:id" element={<ProductAdminFormPage />} /> {/* Ruta para editar una producto */}

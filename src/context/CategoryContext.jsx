@@ -1,6 +1,6 @@
 import { useState ,useEffect} from "react";
 import { createContext, useContext} from "react";
-import { createCategoryRequest, getCategoriesRequest,deleteCategoryRequest ,getCategoryRequest,updateCategoryRequest} from './../api/categories.js';
+import { createCategoryRequest, getCategoriesRequest,deleteCategoryRequest ,getCategoryRequest,updateCategoryRequest, } from './../api/categories.js';
 
 
 export const CategoryContext = createContext();//crear el contexto
@@ -18,6 +18,7 @@ export const useCategory = () => { //crear el hook
 export function CategoryProvider({ children }) {
     const [categories, setCategories] = useState([]);
     const [errors, setErrors] = useState([]);
+    // const [categoryProducts, setCategoryProducts] = useState([]); //para obtener los productos de una categoria
 
     // clear errors after 3 seconds
     useEffect(() => {
@@ -34,7 +35,7 @@ export function CategoryProvider({ children }) {
             const res = await getCategoriesRequest();
             setCategories(res.data);
         } catch (error) {
-            console.error(error);
+            console.error(error.response.data);
         }
     }
 
@@ -45,7 +46,7 @@ export function CategoryProvider({ children }) {
             console.log(res.data);
 
         } catch (error) {
-            console.error(error.data.message);
+            console.error(error.response.data);
         }
     }
     
@@ -54,7 +55,7 @@ export function CategoryProvider({ children }) {
             const res = await deleteCategoryRequest(id);
             if(res.status === 204) setCategories(categories.filter((category) => category._id !== id));
             console.log(res.data);
-            // getCategories();
+            // getCategories(); //luis
         } catch (error) {
             console.error(error.data.message);
         }
@@ -77,15 +78,26 @@ export function CategoryProvider({ children }) {
         }
     }
 
+    // const getProductsByCategory = async (categoryId) => {
+    //     try {
+    //       const res = await getProductsByCategoryRequest(categoryId);
+    //       setCategoryProducts(res.data);
+    //     } catch (error) {
+    //       console.error(error);
+    //     }
+    //   }
+
     return (
         <CategoryContext.Provider 
           value={{
             categories,
+            // categoryProducts,// para obtener los productos de una categoria
             getCategories,
             deleteCategory,
             createCategory,
             getCategory,
-            updateCategory
+            updateCategory,
+            // getProductsByCategory// para obtener los productos de una categoria
 
         }}>
         {children}
