@@ -60,6 +60,12 @@ const ProductAdminFormPage = () => {
     }
   }); 
 
+  // const handleImageChange = (e) => {
+  //   // Actualiza el estado de la imagen cuando se selecciona un archivo
+  //   const imageFile = e.target.files[0];
+  //   setProductImage(imageFile);
+  // };
+
   return (
     <>
       <section className='form-container'>
