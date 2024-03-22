@@ -9,3 +9,5 @@ const instance = axios.create({
 })
 
 export default instance 
+
+export const url_image = 'http://localhost:5000/api/'//esta es la url de nuestro servidor backend
