@@ -23,13 +23,27 @@ const CategoryAdminFormPage = () => {
     }, []);
 
     const onSubmit = handleSubmit( (data) => { 
-        if (params.id) {
+        const formData = new FormData();
+
+        for (const key in data) {
+            if (data.hasOwnProperty(key)) {
+                if (key === 'image') {
+                    formData.append(key, data[key][0]);
+                } else {
+                    formData.append(key, data[key]);
+                }
+            }
+        }
+        try {
+            if (params.id) {
             updateCategory(params.id, data);
         }else{
             createCategory(data);
         }
         console.log(data)
-        navigate('/categories');
+        navigate('/categories');            
+        } catch (error) {            
+        }      
     });
     
 
@@ -58,6 +72,17 @@ const CategoryAdminFormPage = () => {
                         />
                         {errors.name && <span>Este campo es requerido</span>}
                     </div>
+                    <div>
+                        <label htmlFor="image">Imagen</label>
+                        <input
+                            type="file"
+                            id="image"
+                            {...register('image', { required: true })}
+                        />
+                        {errors.name && <span>Este campo es requerido</span>}
+                    </div>
+
+
                     {params.id ? <button type="submit">Editar</button> : <button type="submit">Crear</button>}
                     <button onClick={() => navigate('/categories')}>Cancelar</button>
                 </form>
