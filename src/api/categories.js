@@ -4,14 +4,13 @@ export const getCategoriesRequest = async () => axios.get(`/categories`); //obte
 
 export const getCategoryRequest = async (id) => axios.get(`/category/${id}`); //obtener una categoria
 
-export const createCategoryRequest = async (category) =>{
+export const createCategoryRequest = async (category) => {
   return axios.post(`/category`, category, {
     headers: {
-      'Content-Type': 'multipart/form-data',
+      "Content-Type": "multipart/form-data",
     },
   });
-}
-  
+};
 
 export const updateCategoryRequest = async (id, category) =>
   axios.put(`/category/${id}`, category);

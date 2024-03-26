@@ -44,7 +44,9 @@ const ProductsAdminPage = () => {
                 <td>
                   <img src={`${url_image}${product.productImage}`} alt={product.productImage} width="100px" />
                 </td>
-                <td>{product.category.name}</td>
+                <td>
+                      {product.category ? product.category.name : <p>Sin Categoria</p>}
+                </td>
                 <td>
                   <Link to={`/product/${product._id}`}><button>Editar</button></Link>
                   <button
