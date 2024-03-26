@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useCategory } from '../context/CategoryContext'
 import { Link } from 'react-router-dom';
+import { url_image} from '../api/axios.js'
 
 const CategoriesAdminPage = () => {
   const {categories,getCategories,deleteCategory} = useCategory();
@@ -27,6 +28,7 @@ const CategoriesAdminPage = () => {
             <tr>
               <th>Nombre</th>
               <th>Descripción</th>
+              <th>Imagen</th>
               <th>Acciones</th>
               <th><Link to="/category"><button>Crear Categoría</button></Link></th>
             </tr>
@@ -36,6 +38,9 @@ const CategoriesAdminPage = () => {
               <tr key={category._id}>
                 <td>{category.name}</td>
                 <td>{category.description}</td>
+                <td>
+                  <img src={`${url_image}${category.categoryImage}`} alt={category.categoryImage} width="100px" />
+                </td>
                 <td>
                   <Link to={`/category/${category._id}`}><button>Editar</button></Link>
 

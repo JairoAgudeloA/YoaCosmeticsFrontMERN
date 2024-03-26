@@ -115,7 +115,7 @@ const ProductAdminFormPage = () => {
             <label htmlFor="category">Categoría</label>
             <select
               id="category"
-              {...register('category', { required: true })}
+              {...register('category', { required:false })}
             >
               {categories.map((category) => (
                 <option key={category._id} value={category._id}>

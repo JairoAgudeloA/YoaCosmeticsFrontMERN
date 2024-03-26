@@ -9,7 +9,7 @@ export const useCategory = () => { //crear el hook
   const context = useContext(CategoryContext); //obtener el contexto
 
   if (!context) {
-    throw new Error("useCategory must be used within a CategoryProvider");
+    throw new Error(" useCategory must be used within a CategoryProvider");
   }
 
   return context;
@@ -55,7 +55,7 @@ export function CategoryProvider({ children }) {
             const res = await deleteCategoryRequest(id);
             if(res.status === 204) setCategories(categories.filter((category) => category._id !== id));
             console.log(res.data);
-            // getCategories(); //luis
+            getCategories(); //luis
         } catch (error) {
             console.error(error.data.message);
         }

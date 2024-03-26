@@ -17,17 +17,18 @@ const CategoryAdminFormPage = () => {
                 console.log(category)
                 setValue('name', category.name);
                 setValue('description', category.description);
+                setValue('categoryImage', category.categoryImage);
             }
         }
         loadCategory();
     }, []);
 
-    const onSubmit = handleSubmit( (data) => { 
+    const onSubmit = handleSubmit(async (data) => { 
         const formData = new FormData();
 
         for (const key in data) {
             if (data.hasOwnProperty(key)) {
-                if (key === 'image') {
+                if (key === 'categoryImage') {
                     formData.append(key, data[key][0]);
                 } else {
                     formData.append(key, data[key]);
@@ -36,11 +37,11 @@ const CategoryAdminFormPage = () => {
         }
         try {
             if (params.id) {
-            updateCategory(params.id, data);
+            updateCategory(params.id, formData);
         }else{
-            createCategory(data);
+            createCategory(formData);
         }
-        console.log(data)
+        console.log(formData)
         navigate('/categories');            
         } catch (error) {            
         }      
@@ -58,7 +59,7 @@ const CategoryAdminFormPage = () => {
                             type="text"
                             id="name"
                             placeholder="Ingrese Nombre de la Categoria"
-                            {...register('name', { required: true })}
+                            {...register('name', { required: true, unique: true})}
                         />
                         {errors.name && <span>Este campo es requerido</span>}
                     </div>
@@ -70,16 +71,17 @@ const CategoryAdminFormPage = () => {
                             placeholder="Ingrese Descripción de la Categoria"
                             {...register('description', { required: true })}
                         />
-                        {errors.name && <span>Este campo es requerido</span>}
+                        {errors.description && <span>Este campo es requerido</span>}
                     </div>
                     <div>
-                        <label htmlFor="image">Imagen</label>
+                        <label htmlFor="categoryImage">Imagen</label>
                         <input
                             type="file"
-                            id="image"
-                            {...register('image', { required: true })}
+                            id="categoryImage"
+                            placeholder="Ingrese URL de la Imagen de la categoria"
+                            {...register('categoryImage', { required: true })}
                         />
-                        {errors.name && <span>Este campo es requerido</span>}
+                        {errors.categoryImage && <span>Este campo es requerido</span>}
                     </div>
 
 
