@@ -2,8 +2,7 @@ import '../assets/styles/components/Main.css'
 import { useProduct } from '../context/ProductContext'
 import { useEffect } from 'react'
 import { url_image } from '../api/axios'
-import { useCart } from '../context/CartContext' 
-import { useCartDispatchs } from '../context/CartContext'
+import { useCart,useCartDispatchs } from '../context/CartContext'
 
 
 export const Main = () => {
@@ -14,20 +13,19 @@ export const Main = () => {
     useEffect(() => {
         getProducts();
       }, []);
-    
 
     return(
         <>
         <section className="contenido-container" >
         {products.map((product) => (
-            <div className="contenido" key={product.id}>
+            <div className="contenido" key={product._id}>
                 <img src={`${url_image}${product.productImage}`} alt={product.name} />
                 <h2>{product.name}</h2>
                 <p>{product.description}</p>
                 <p>${product.price}</p>
                 <button
                 onClick={() =>{
-                    dispatch({type:'addproduct',product:product})
+                    dispatch({type:'addproductincart',product:product})
                 }}>AÑADIR</button>
             </div>
         ))}
