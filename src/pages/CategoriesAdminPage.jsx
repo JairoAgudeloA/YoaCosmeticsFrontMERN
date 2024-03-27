@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 import { useCategory } from '../context/CategoryContext'
 import { Link } from 'react-router-dom';
-import { url_image} from '../api/axios.js'
+import { url_image } from '../api/axios.js'
 
 const CategoriesAdminPage = () => {
-  const {categories,getCategories,deleteCategory} = useCategory();
+  const { categories, getCategories, deleteCategory } = useCategory();
 
   useEffect(() => {
     getCategories();
@@ -12,52 +12,62 @@ const CategoriesAdminPage = () => {
 
   return (
     <>
-    {categories.length === 0 ? (
-      <>
-      <section>
-      <h3>No hay categorias</h3>
-      <Link to="/category"><button>Crear Categoría</button></Link>
-      </section>
-      </>
-    ) : (
-      <>
-      <section>
-        <h1>Categorias</h1>
-        <table>
-          <thead>
-            <tr>
-              <th>Nombre</th>
-              <th>Descripción</th>
-              <th>Imagen</th>
-              <th>Acciones</th>
-              <th><Link to="/category"><button>Crear Categoría</button></Link></th>
-            </tr>
-          </thead>
-          <tbody>
-            {categories.map((category) => (
-              <tr key={category._id}>
-                <td>{category.name}</td>
-                <td>{category.description}</td>
-                <td>
-                  <img src={`${url_image}${category.categoryImage}`} alt={category.categoryImage} width="100px" />
-                </td>
-                <td>
-                  <Link to={`/category/${category._id}`}><button>Editar</button></Link>
+      {categories.length === 0 ? (
+        <>
+          <section>
+            <h3>No hay categorias</h3>
+            <Link to="/category"><button>Crear Categoría</button></Link>
+          </section>
+        </>
+      ) : (
+        <>
+          <section>
+            <h1>Categorias</h1>
+            <table>
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Descripción</th>
+                  <th>Imagen</th>
+                  <th>Acciones</th>
+                  <th><Link to="/category"><button>Crear Categoría</button></Link></th>
+                </tr>
+              </thead>
+              <tbody>
+                {categories.map((category) => (
+                  <tr key={category._id}>
+                    <td>{category.name}</td>
+                    <td>{category.description}</td>
+                    <td>
+                      <img src={`${url_image}${category.categoryImage}`} alt={category.categoryImage} width="100px" />
+                    </td>
+                    <td>
+                      <Link to={`/category/${category._id}`}><button>Editar</button></Link>
 
-                  <button
-                  onClick={() =>{
-                    deleteCategory(category._id)
-                  }}>Borrar</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </section>
-      
-      </>
-      
-    )}
+                      <button
+                        onClick={() => {
+                          // Mostrar el cuadro de diálogo de confirmación
+                          const confirmation = window.confirm("¿Estás seguro de que deseas borrar esta categoría?");
+
+                          // Si el usuario hace clic en "Aceptar", proceder con la eliminación
+                          if (confirmation) {
+                            deleteCategory(category._id);
+                          }
+                        }}
+                      >
+                        Borrar
+                      </button>
+
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </section>
+
+        </>
+
+      )}
     </>
   )
 }
