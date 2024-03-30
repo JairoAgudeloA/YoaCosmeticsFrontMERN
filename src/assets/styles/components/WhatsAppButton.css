@@ -1,0 +1,12 @@
+.whatsapp{
+    position: fixed;
+    bottom: 0px;
+    right: 20px;
+    z-index: 9999;
+}
+
+.whatsapp img{
+    width: 50px;
+    padding-left: 10px;
+    
+}

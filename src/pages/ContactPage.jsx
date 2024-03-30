@@ -96,6 +96,7 @@ export const ContactPage = () => {
         <button type="submit">Enviar</button>
       </form>
       </section>
+      
     </>
   );
 }

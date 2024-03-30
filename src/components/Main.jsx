@@ -1,74 +1,35 @@
-import React from "react"
 import '../assets/styles/components/Main.css'
-import imagen from '../assets/imagen.jpg'
-import labial from '../assets/labial.jpg'
-import nails from '../assets/nails.jpg'
+import { useProduct } from '../context/ProductContext'
+import { useEffect } from 'react'
+import { url_image } from '../api/axios'
+import { useCart,useCartDispatchs } from '../context/CartContext'
 
 
 export const Main = () => {
+    const {products,getProducts} = useProduct();
+    const cart = useCart();
+    const dispatch = useCartDispatchs();
+
+    useEffect(() => {
+        getProducts();
+      }, []);
+
     return(
         <>
-        <main>
-        <div class="contenido-container">
-            <div class="contenido">
-                <img src={imagen}  alt="Imagen 1"/>
-                <h2>Kit de Cuidado</h2>
-                <p>$ 7.000</p>
-                <button>AÑADIR</button>
+        <section className="contenido-container" >
+        {products.map((product) => (
+            <div className="contenido" key={product._id}>
+                <img src={`${url_image}${product.productImage}`} alt={product.name} />
+                <h2>{product.name}</h2>
+                <p>{product.description}</p>
+                <p>${product.price}</p>
+                <button
+                onClick={() =>{
+                    dispatch({type:'addproductincart',product:product})
+                }}>AÑADIR</button>
             </div>
-            
-            <div class="contenido">
-                <img src= {imagen} alt="Imagen 1"/>
-                <h2>Kit de Cuidado</h2>
-                <p>$ 7.000</p>
-                <button>AÑADIR</button>
-            </div>
-
-            <div class="contenido">
-                <img src={imagen}  alt="Imagen 1"/>
-                <h2>Kit de Cuidado</h2>
-                <p>$ 7.000</p>
-                <button>AÑADIR</button>
-            </div>
-
-            <div class="contenido">
-                <img src={imagen}  alt="Imagen 1"/>
-                <h2>Kit de Cuidado</h2>
-                <p>$ 7.000</p>
-                <button>AÑADIR</button>
-            </div>
-
-            <div class="contenido">
-                <img src={labial} alt="Imagen 1"/>
-                <h2>Kit de Cuidado</h2>
-                <p>$ 7.000</p>
-                <button>AÑADIR</button>
-            </div>
-
-            <div class="contenido">
-                <img src={labial} alt="Imagen 1"/>
-                <h2>Kit de Cuidado</h2>
-                <p>$ 7.000</p>
-                <button>AÑADIR</button>
-            </div>
-
-            <div class="contenido">
-                <img src={labial} alt="Imagen 1"/>
-                <h2>Kit de Cuidado</h2>
-                <p>$ 7.000</p>
-                <button>AÑADIR</button>
-            </div>
-
-
-            <div class="contenido">
-                <img src={labial} alt="Imagen 1"/>
-                <h2>Kit de Cuidado</h2>
-                <p>$ 7.000</p>
-                <button>AÑADIR</button>
-            </div>
-
-        </div>
-    </main>
+        ))}
+        </section>
         
         </>
     )
