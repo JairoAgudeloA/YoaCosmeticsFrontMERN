@@ -1,5 +1,5 @@
 import { createContext, useContext, useState,useEffect } from "react";
-import { loginRequest, registerRequest } from "../api/auth";
+import { loginRequest, registerRequest,profileRequest,updateProfileRequest } from "../api/auth";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 
@@ -51,6 +51,32 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const profile = async () => {
+    try {
+      const res = await profileRequest();
+      if (res && res.data) {
+        setUser(res.data);
+      } else {
+        console.error('La respuesta de perfil no tiene la estructura esperada:', res);
+        setErrors("La respuesta de perfil no tiene la estructura esperada");
+      }
+    } catch (error) {
+      console.error('Error al obtener el perfil:', error);
+      setErrors(error.response ? error.response.data : "Error al obtener el perfil");
+    }
+  };
+  
+
+  const updateProfile = async (user) => {
+    try {
+      const res = await updateProfileRequest(user);
+      setUser(res.data);
+    } catch (error) {
+      console.log(error.response);
+      setErrors(error.response.data);
+    }
+  }
+
   const logout = () => {
     Cookies.remove("token");
     setUser(null);
@@ -87,6 +113,8 @@ export const AuthProvider = ({ children }) => {
         signup,
         signin,
         logout,
+        profile,
+        updateProfile,
         isAuthenticated,
         errors,
         loading,
