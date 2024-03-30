@@ -9,21 +9,24 @@ import FavoritePage from "./pages/FavoritePage";
 import { Footer } from "./components/Footer";
 import { WhatsAppButton } from "./components/WhatsAppButton";
 import { EditPerfil } from "./pages/EditPerfil";
-// import { CategoryPage } from "./pages/CategoryPage";
+
 import "./index.css"
+
+{/*estas son las rutas del admin*/ }
 import CategoriesAdminPage from "./pages/CategoriesAdminPage";
 import CategoryAdminFormPage from "./pages/CategoryAdminFormPage";
 import ProductsAdminPage from "./pages/ProductsAdminPage";
 import ProductAdminFormPage from "./pages/ProductAdminFormPage";
+import UsersAdminPage from "./pages/UsersAdminPage";
+import UserAdminFormPage from "./pages/UserAdminFormPage";
 
 {/*aqui estaran importados los contextss */ }
 import { AuthProvider } from "./context/AuthContext"
 import { CategoryProvider } from "./context/CategoryContext";
 import { ProductProvider } from "./context/ProductContext";
 import { UserProvider } from "./context/UserContext";
-import UsersAdminPage from "./pages/UsersAdminPage";
-import UserAdminFormPage from "./pages/UserAdminFormPage";
 import { CartProvider } from "./context/CartContext";
+import { OrderProvider } from "./context/OrderContext";
 function App() {
 
   return (
@@ -33,6 +36,7 @@ function App() {
           <CategoryProvider>
             <ProductProvider>
               <CartProvider>
+                <OrderProvider>
 
                 <Navbar />
                 <Outlet />
@@ -43,11 +47,11 @@ function App() {
                   {/* <Route path="/contactus" element={<ContactPage />} /> */}
                   <Route path="/login" element={<LoginPage />} />
                   <Route path="/register" element={<RegisterPage />} />
-                  {/* <Route path="/category" element={<CategoryPage />} /> */}
 
                   {/* Futuras rutas de usuarios logueados */}
 
                   <Route path="/profile" element={<EditPerfil />} />
+                  {/* <Route path="/profile/:id" element={<EditPerfil />} /> */}
 
                   {/* Futuras rutas de los admin */}
                   <Route path="/categories" element={<CategoriesAdminPage />} /> {/* Ruta para ver todas las categorias */}
@@ -67,6 +71,7 @@ function App() {
                 <WhatsAppButton />
                 <Footer />
 
+                </OrderProvider>              
               </CartProvider>
             </ProductProvider>
           </CategoryProvider>
