@@ -37,6 +37,18 @@ export function ProductProvider({ children }) {
 
     const getProduct = async (id) => {
         try {
+            
+        // const res = await getProductsRequest();
+        // if (searchTerm) {
+        //     // Filtrar productos basados en el término de búsqueda
+        //     const filteredProducts = res.data.filter(product =>
+        //         product.name.toLowerCase().includes(searchTerm.toLowerCase())
+        //     );
+        //     setProducts(filteredProducts);
+        // } else {
+        //     // Si no hay término de búsqueda, obtener todos los productos
+        //     setProducts(res.data);
+        // }
             const res = await getProductRequest(id);
             return res.data;
         } catch (error) {

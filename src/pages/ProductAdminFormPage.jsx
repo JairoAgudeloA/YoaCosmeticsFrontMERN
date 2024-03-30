@@ -3,6 +3,7 @@ import { useProduct } from '../context/ProductContext'
 import {  useForm } from 'react-hook-form'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useCategory } from '../context/CategoryContext'
+import { url_image } from '../api/axios'
 // import { useAuth } from '../context/AuthContext'
 
 
@@ -18,11 +19,18 @@ const ProductAdminFormPage = () => {
     async function loadProduct() {
       if (params.id) {
         const product = await getProduct(params.id);
+        console.log(product);
+        if(product){
         setValue('name', product.name);
         setValue('price', product.price);
         setValue('description', product.description);
+        setValue('stock', product.stock);
         setValue('productImage', product.productImage);
-        setValue('category', product.category);
+        // setValue('category', product.category.name);
+        if(product.category){
+          setValue('category', product.category._id);
+        }
+        }
       }
     }
     loadProduct();
@@ -102,12 +110,21 @@ const ProductAdminFormPage = () => {
             {errors.description && <span>Este campo es requerido</span>}
           </div>
           <div>
+          <div>
+            <label htmlFor="stock">Cantidad</label>
+            <input
+              type="number"
+              id="stock"
+              placeholder="Ingrese La Cantidad Total Del Producto"
+              {...register('stock', { required: true })}
+            />
+            {errors.stock && <span>Este campo es requerido</span>}
+          </div>
             <label htmlFor="productImage">Imagen</label>
             <input
               type="file"
               id="productImage"
-              placeholder="Ingrese URL de la Imagen del Producto"
-              {...register('productImage', { required: true })}
+              {...register('productImage', { required: false })}
             />
             {errors.productImage && <span>Este campo es requerido</span>}
           </div>
