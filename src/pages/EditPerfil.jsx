@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useForm } from 'react-hook-form';
 import { useNavigate,useParams } from 'react-router-dom';
+import { url_image } from "../api/axios";
 
 export const EditPerfil = () => {
   const { user,profile,updateProfile } = useAuth();
