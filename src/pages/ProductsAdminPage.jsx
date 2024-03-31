@@ -10,6 +10,7 @@ const ProductsAdminPage = () => {
 
   const searchProduct = (e) => {
     setSearch(e.target.value);
+    console.log(e.target.value);
   }
 
     const results = !search ? products : products.filter((product) => product.name.toLowerCase().includes(search.toLowerCase()));

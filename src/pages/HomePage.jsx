@@ -4,11 +4,11 @@ import { Main } from '../components/Main'
 import { WhatsAppButton } from '../components/WhatsAppButton'
 
 
-export const HomePage = () => {
+export const HomePage = ({search}) => {
   return (
     <>
     <Carousel/>
-    <Main/>
+    <Main search={search}/>
     <WhatsAppButton/>
       
     </>

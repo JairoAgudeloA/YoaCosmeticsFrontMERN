@@ -1,6 +1,7 @@
 import { Outlet, Route, Routes } from "react-router-dom"
 import { HomePage } from "./pages/HomePage"
-import { ContactPage } from "./pages/ContactPage";
+// import { ContactPage } from "./pages/ContactPage";
+import {SearchResultsPage } from "./pages/SearchResultsPage"
 import { LoginPage } from "./pages/LoginPage";
 import { RegisterPage } from "./pages/RegisterPage";
 import { Navbar } from "./components/Navbar";
@@ -27,8 +28,9 @@ import { ProductProvider } from "./context/ProductContext";
 import { UserProvider } from "./context/UserContext";
 import { CartProvider } from "./context/CartContext";
 import { OrderProvider } from "./context/OrderContext";
+import { useState } from "react";
 function App() {
-
+  const [search, setSearch] = useState('');
   return (
     <>
       <AuthProvider>
@@ -38,10 +40,11 @@ function App() {
               <CartProvider>
                 <OrderProvider>
 
-                <Navbar />
+                <Navbar setSearch={setSearch} />
                 <Outlet />
                 <Routes>
-                  <Route path="/" element={<HomePage />} />
+                  <Route path="//:search" element={<HomePage search={search} />} />
+                  <Route path="/search/:search" element={<SearchResultsPage search={search} />} />
                   <Route path="/cart" element={<CartPage />} />
                   <Route path="/favorites" element={<FavoritePage />} />
                   {/* <Route path="/contactus" element={<ContactPage />} /> */}
