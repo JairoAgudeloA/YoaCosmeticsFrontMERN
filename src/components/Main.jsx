@@ -5,19 +5,23 @@ import { url_image } from '../api/axios'
 import { useCart,useCartDispatchs } from '../context/CartContext'
 
 
-export const Main = () => {
+export const Main = ({search}) => {
     const {products,getProducts} = useProduct();
     const cart = useCart();
     const dispatch = useCartDispatchs();
 
+    const results = !search ? products : products.filter((product) => product.name.toLowerCase().includes(search.toLowerCase()));
+
+
     useEffect(() => {
         getProducts();
       }, []);
+    
 
     return(
         <>
         <section className="contenido-container" >
-        {products.map((product) => (
+        {results.map((product) => (
             <div className="contenido" key={product._id}>
                 <img src={`${url_image}${product.productImage}`} alt={product.name} />
                 <h2>{product.name}</h2>
