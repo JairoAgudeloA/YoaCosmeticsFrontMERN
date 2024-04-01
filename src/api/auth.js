@@ -4,7 +4,7 @@ export const registerRequest = async (user) => axios.post(`/register`, user);
 
 export const loginRequest = async (user) => axios.post(`/login`, user);
 
-//mirar si estas rutas funcionan 
+//mirar si estas rutas funcionan
 
 export const profileRequest = async () => axios.get(`/profile`);
 

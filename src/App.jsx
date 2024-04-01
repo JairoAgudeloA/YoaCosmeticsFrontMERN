@@ -1,7 +1,7 @@
 import { Outlet, Route, Routes } from "react-router-dom"
 import { HomePage } from "./pages/HomePage"
 // import { ContactPage } from "./pages/ContactPage";
-import {SearchResultsPage } from "./pages/SearchResultsPage"
+import { SearchResultsPage } from "./pages/SearchResultsPage"
 import { LoginPage } from "./pages/LoginPage";
 import { RegisterPage } from "./pages/RegisterPage";
 import { Navbar } from "./components/Navbar";
@@ -11,6 +11,7 @@ import { Footer } from "./components/Footer";
 import { WhatsAppButton } from "./components/WhatsAppButton";
 import { EditPerfil } from "./pages/EditPerfil";
 
+import ProtectedRoute from "./ProtectedRoute";
 import "./index.css"
 
 {/*estas son las rutas del admin*/ }
@@ -40,41 +41,47 @@ function App() {
               <CartProvider>
                 <OrderProvider>
 
-                <Navbar setSearch={setSearch} />
-                <Outlet />
-                <Routes>
-                  <Route path="//:search" element={<HomePage search={search} />} />
-                  <Route path="/search/:search" element={<SearchResultsPage search={search} />} />
-                  <Route path="/cart" element={<CartPage />} />
-                  <Route path="/favorites" element={<FavoritePage />} />
-                  {/* <Route path="/contactus" element={<ContactPage />} /> */}
-                  <Route path="/login" element={<LoginPage />} />
-                  <Route path="/register" element={<RegisterPage />} />
+                  <Navbar setSearch={setSearch} />
+                  <Outlet />
+                  <Routes>
+                    <Route path="/" element={<HomePage search={search} />} />
+                    <Route path="/search/:search" element={<SearchResultsPage search={search} />} />
+                    <Route path="/cart" element={<CartPage />} />
+                    <Route path="/favorites" element={<FavoritePage />} />
+                    {/* <Route path="/contactus" element={<ContactPage />} /> */}
+                    <Route path="/login" element={<LoginPage />} />
+                    <Route path="/register" element={<RegisterPage />} />
 
-                  {/* Futuras rutas de usuarios logueados */}
+                    {/* Futuras rutas de usuarios logueados */}
+                    <Route element={<ProtectedRoute/> }>
+                      <Route path="/profile" element={<EditPerfil />} />
+                      {/* <Route path="/profile/:User" element={<EditPerfil />} /> */}
+                    </Route>
 
-                  <Route path="/profile" element={<EditPerfil />} />
-                  {/* <Route path="/profile/:id" element={<EditPerfil />} /> */}
+                    {/* Futuras rutas de los admin */}
 
-                  {/* Futuras rutas de los admin */}
-                  <Route path="/categories" element={<CategoriesAdminPage />} /> {/* Ruta para ver todas las categorias */}
-                  <Route path="/category" element={<CategoryAdminFormPage />} /> {/* Ruta para crear una categoria */}
-                  <Route path="/category/:id" element={<CategoryAdminFormPage />} /> {/* Ruta para editar una categoria */}
+                    {/* <Route> */}
 
-                  {/* <Route path="/category/:id/products" element={< />} /> Ruta para ver todas las productos de una categoria */}
+                      <Route path="/categories" element={<CategoriesAdminPage />} /> {/* Ruta para ver todas las categorias */}
+                      <Route path="/category" element={<CategoryAdminFormPage />} /> {/* Ruta para crear una categoria */}
+                      <Route path="/category/:id" element={<CategoryAdminFormPage />} /> {/* Ruta para editar una categoria */}
 
-                  <Route path="/products" element={<ProductsAdminPage />} /> {/* Ruta para ver todas las productos */}
-                  <Route path="/product" element={<ProductAdminFormPage />} /> {/* Ruta para crear una producto */}
-                  <Route path="/product/:id" element={<ProductAdminFormPage />} /> {/* Ruta para editar una producto */}
+                      {/* <Route path="/category/:id/products" element={< />} /> Ruta para ver todas las productos de una categoria */}
 
-                  <Route path="/users" element={<UsersAdminPage />} /> {/* Ruta para ver todas las usuarios */}
-                  <Route path="/user" element={<UserAdminFormPage />} /> {/* Ruta para crear una usuario */}
-                  <Route path="/user/:id" element={<UserAdminFormPage />} /> {/* Ruta para editar una usuario */}
-                </Routes>
-                <WhatsAppButton />
-                <Footer />
+                      <Route path="/products" element={<ProductsAdminPage />} /> {/* Ruta para ver todas las productos */}
+                      <Route path="/product" element={<ProductAdminFormPage />} /> {/* Ruta para crear una producto */}
+                      <Route path="/product/:id" element={<ProductAdminFormPage />} /> {/* Ruta para editar una producto */}
 
-                </OrderProvider>              
+                      <Route path="/users" element={<UsersAdminPage />} /> {/* Ruta para ver todas las usuarios */}
+                      <Route path="/user" element={<UserAdminFormPage />} /> {/* Ruta para crear una usuario */}
+                      <Route path="/user/:id" element={<UserAdminFormPage />} /> {/* Ruta para editar una usuario */}
+                    {/* </Route> */}
+
+                  </Routes>
+                  <WhatsAppButton />
+                  <Footer />
+
+                </OrderProvider>
               </CartProvider>
             </ProductProvider>
           </CategoryProvider>
