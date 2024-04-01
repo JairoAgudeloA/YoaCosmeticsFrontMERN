@@ -10,43 +10,40 @@ export const EditPerfil = () => {
   const navigate = useNavigate();
   const params = useParams();
  
-  // Variable de referencia para almacenar el ID de usuario
-  const userIdRef = useRef(null);
-
+  // const onSubmit = handleSubmit(async (data) => {
+  //   try {
+  //     await updateProfile(data);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // });
   useEffect(() => {
-    async function loadProfileUser() {
-      // Verificar si el usuario está definido y el ID de usuario no ha cambiado
-      if (user && user.id !== userIdRef.current) {
-        userIdRef.current = user.id; // Actualizar el ID de usuario almacenado en la referencia
-        try {
-          const userData = await profile();
-          if (userData) {
-            setValue('username', userData.username);
-            setValue('email', userData.email);
-
-            // Establecer otros campos solo si están presentes en los datos del perfil del usuario
-            if (userData.phone) setValue('phone', userData.phone);
-            if (userData.birthdate) setValue('birthdate', userData.birthdate);
-            if (userData.biography) setValue('biography', userData.biography);
-            if (userData.profileImage) setValue('profileImage', url_image + userData.profileImage);
-          } else {
-            console.error('No se encontraron datos de perfil para el usuario:', user);
-          }
-        } catch (error) {
-          console.error('Error al cargar el perfil del usuario:', error);
-        }
+    const fetchProfileData = async () => {
+      try {
+        const res = await profile();
+        // Establecer los valores de los campos del formulario con los datos del perfil del usuario
+        setValue('username', res.data.username);
+        setValue('email', res.data.email);
+        // Establecer otros valores si es necesario
+      } catch (error) {
+        console.error('Error loading user profile:', error);
+        // Manejar el error
       }
-    }
-    loadProfileUser();
-  }, [user]);
-
+    };
+  
+    fetchProfileData();
+  }, []);
   const onSubmit = handleSubmit(async (data) => {
     try {
-      await updateProfile(data);
+      await updateProfile(data); // Enviar los datos al backend
+      // Puedes realizar alguna acción adicional después de enviar los datos, como redirigir a otra página
+      navigate('/perfil'); // Redirigir a la página de perfil después de guardar los cambios
     } catch (error) {
       console.error(error);
+      // Manejar el error, si es necesario
     }
   });
+  
 
   return (
     <>
