@@ -4,7 +4,7 @@ import axios from "axios";
 
 const instance = axios.create({
   baseURL: "http://localhost:5000/api", //esta es la url de nuestro servidor backend
-  withCredentials: true,
+  withCredentials: true, // Habilita el envío de cookies
 });
 
 export default instance;

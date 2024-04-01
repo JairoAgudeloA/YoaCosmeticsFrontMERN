@@ -1,5 +1,5 @@
-import { createContext, useContext, useState,useEffect } from "react";
-import { loginRequest, registerRequest,profileRequest,updateProfileRequest } from "../api/auth";
+import { createContext, useContext, useState, useEffect } from "react";
+import { loginRequest, registerRequest, profileRequest, updateProfileRequest,verifyTokenRequest } from "../api/auth";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 
@@ -28,12 +28,85 @@ export const AuthProvider = ({ children }) => {
     }
   }, [errors]);
 
+
+  useEffect(() => {
+    async function checkLogin() {
+      const cookies = Cookies.get();
+      console.log("Cookies", cookies);
+      if (!cookies.token) {
+        setIsAuthenticated(false);
+        setLoading(false);
+        return setUser(null);
+      }
+
+        try {
+        console.log(cookies.token);
+        const res = await verifyTokenRequest(cookies.token);
+        console.log(res);
+        if(!res.data) {
+          setIsAuthenticated(false);
+          setLoading(false);
+          return;        
+        }
+        setIsAuthenticated(true);
+        setUser(res.data);  
+        
+        setLoading(false);        
+        } catch (error) {
+          console.error(error);
+          setIsAuthenticated(false);
+          setUser(null);
+          setLoading(false);
+        }
+      }
+    checkLogin();
+  }, []);
+
+  //copilotuseEffect(() => {
+    useEffect(() => {
+      async function loadUserProfile() {
+        try {
+          const res = await profile();
+          if (res && res.data) { // Verificar si res y res.data son definidos
+            setUser(res.data);
+          } else {
+            console.error('La respuesta de perfil no tiene la estructura esperada:', res);
+            setErrors("La respuesta de perfil no tiene la estructura esperada");
+          }
+        } catch (error) {
+          console.error('Error loading user profile:', error);
+          // Manejar el error
+        }
+      }
+      if (isAuthenticated) {
+        loadUserProfile();
+      }
+    }, [isAuthenticated]);
+    
+
+
+  // Save auth data to localStorage
+  const saveAuthToLocalStorage = (authData) => {
+    localStorage.setItem("auth", JSON.stringify(authData));
+  };
+
+  // Load auth data from localStorage
+  const loadAuthFromLocalStorage = () => {
+    const authData = localStorage.getItem("auth");
+    if (authData) {
+      const { user, isAuthenticated } = JSON.parse(authData);
+      setUser(user);
+      setIsAuthenticated(isAuthenticated);
+    }
+    setLoading(false);
+  };
+
   const signup = async (user) => {
     try {
       const res = await registerRequest(user);
-        navigate("/login"); 
-        alert("Usuario creado con éxito");
-        setUser(res.data);
+      navigate("/login");
+      alert("Usuario creado con éxito");
+      setUser(res.data);
     } catch (error) {
       alert(error.response.data);
       setErrors(error.response.data);
@@ -45,6 +118,7 @@ export const AuthProvider = ({ children }) => {
       const res = await loginRequest(user);
       setUser(res.data);
       setIsAuthenticated(true);
+      saveAuthToLocalStorage({ user: res.data, isAuthenticated: true });
     } catch (error) {
       console.log(error.response);
       setErrors(error.response.data);
@@ -56,6 +130,7 @@ export const AuthProvider = ({ children }) => {
       const res = await profileRequest();
       if (res && res.data) {
         setUser(res.data);
+        setIsAuthenticated(true);
       } else {
         console.error('La respuesta de perfil no tiene la estructura esperada:', res);
         setErrors("La respuesta de perfil no tiene la estructura esperada");
@@ -65,7 +140,6 @@ export const AuthProvider = ({ children }) => {
       setErrors(error.response ? error.response.data : "Error al obtener el perfil");
     }
   };
-  
 
   const updateProfile = async (user) => {
     try {
@@ -75,35 +149,19 @@ export const AuthProvider = ({ children }) => {
       console.log(error.response);
       setErrors(error.response.data);
     }
-  }
+  };
 
   const logout = () => {
     Cookies.remove("token");
     setUser(null);
     setIsAuthenticated(false);
+    // Remove auth data from localStorage when logging out
+    localStorage.removeItem("auth");
   };
 
   useEffect(() => {
-    const checkLogin = async () => {
-      const cookies = Cookies.get();
-      if (!cookies.token) {
-        setIsAuthenticated(false);
-        setLoading(false);
-        return;
-      }
-      try {
-        const res = await verifyTokenRequest(cookies.token);
-        console.log(res);
-        if (!res.data) return setIsAuthenticated(false);
-        setIsAuthenticated(true);
-        setUser(res.data);
-        setLoading(false);
-      } catch (error) {
-        setIsAuthenticated(false);
-        setLoading(false);
-      }
-    };
-    checkLogin();
+    // Load auth data from localStorage when component mounts
+    loadAuthFromLocalStorage();
   }, []);
 
   return (

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useForm } from 'react-hook-form';
 import { useNavigate,useParams } from 'react-router-dom';
@@ -9,33 +9,41 @@ export const EditPerfil = () => {
   const { register, handleSubmit, formState: { errors }, setValue } = useForm();
   const navigate = useNavigate();
   const params = useParams();
-  
-
-  // useEffect(() => {
-  //   async function loadProfileUser() {
-  //     if (user) {
-  //       const user = await profile();
-  //       setValue('username', user.username);
-  //       setValue('email', user.email);
-  //       setValue('password', user.password)
-  //       setValue('phone', user.phone);
-  //       setValue('birthdate', user.birthdate);
-  //       setValue('biography', user.biography);
-  //       setValue('photo', user.photo);
-  //     }
+ 
+  // const onSubmit = handleSubmit(async (data) => {
+  //   try {
+  //     await updateProfile(data);
+  //   } catch (error) {
+  //     console.error(error);
   //   }
-  //   loadProfileUser();
-  // }, []);
-
-
-
-  const onSubmit = handleSubmit(async (data) => { 
+  // });
+  useEffect(() => {
+    const fetchProfileData = async () => {
+      try {
+        const res = await profile();
+        // Establecer los valores de los campos del formulario con los datos del perfil del usuario
+        setValue('username', res.data.username);
+        setValue('email', res.data.email);
+        // Establecer otros valores si es necesario
+      } catch (error) {
+        console.error('Error loading user profile:', error);
+        // Manejar el error
+      }
+    };
+  
+    fetchProfileData();
+  }, []);
+  const onSubmit = handleSubmit(async (data) => {
     try {
-      await updateProfile(data);
+      await updateProfile(data); // Enviar los datos al backend
+      // Puedes realizar alguna acción adicional después de enviar los datos, como redirigir a otra página
+      navigate('/perfil'); // Redirigir a la página de perfil después de guardar los cambios
     } catch (error) {
       console.error(error);
+      // Manejar el error, si es necesario
     }
   });
+  
 
   return (
     <>
@@ -59,18 +67,18 @@ export const EditPerfil = () => {
             type="email"
             id="email"
             name="email"
-            {...register('email', { required: true })}
+            disabled
+            {...register('email')}
           />
-          {errors.email && <span>Este campo es requerido</span>}
         </div>
 
         <div>
-          <label htmlFor="password">Contraseña</label>
+          <label htmlFor="confirmPassword">Contraseña actual</label>
           <input
             type="password"
-            id="password"
-            name="password"
-            {...register('password', { required: true })}
+            id="confirmPassword"
+            name="confirmPassword"
+            {...register('confirmPassword', { required: true })}
           />
           {errors.password && <span>Este campo es requerido</span>}
         </div>
@@ -83,27 +91,27 @@ export const EditPerfil = () => {
             name="newpassword"
             {...register('newpassword', { required: true })}
           />
-          {errors.password_confirmation && <span>Este campo es requerido</span>}
+          {errors.newpassword && <span>Este campo es requerido</span>}
         </div>
 
         <div>
-          <label htmlFor="confirmnewpassword">Confirmar Nueva Contraseña</label>
+          <label htmlFor="confirmNewPassword">Confirmar Nueva Contraseña</label>
           <input
             type="password"
-            id="password_confirmation"
-            name="password_confirmation"
-            {...register('password_confirmation', { required: true })}
+            id="confirmNewPassword"
+            name="confirmNewPassword"
+            {...register('confirmNewPassword', { required: true })}
           />
-          {errors.password_confirmation && <span>Este campo es requerido</span>}
+          {errors.confirmNewPassword && <span>Este campo es requerido</span>}
         </div>
 
         <div>
           <label htmlFor="phone">Telefono</label>
           <input
-            type="text"
+            type="number"
             id="phone"
             name="phone"
-            {...register('phone', { required: true })}
+            {...register('phone', { required: true})}
           />
           {errors.phone && <span>Este campo es requerido</span>}
         </div>
@@ -114,31 +122,28 @@ export const EditPerfil = () => {
             type='date'
             id='birthdate'
             name='birthdate'
-            {...register('birthdate', { required: true })}
+            {...register('birthdate')}
           />
-          {errors.birthdate && <span>Este campo es requerido</span>}
         </div>
 
         <div>
           <label htmlFor='biography'>Biografia</label>
           <input 
-            type='date'
+            type='text'
             id='biography'
             name='biography'
-            {...register('biography', { required: true })}
+            {...register('biography')}
           />
-          {errors.biography && <span>Este campo es requerido</span>}
         </div>
 
         <div>
-          <label htmlFor='photo'>Foto</label>
+          <label htmlFor='profileImage'>Foto</label>
           <input 
             type='file'
-            id='photo'
-            name='photo'
-            {...register('photo', { required: true })}
+            id='profileImage'
+            name='profileImage'
+            {...register('profileImage')}
           />
-          {errors.photo && <span>Este campo es requerido</span>}
         </div>
         <button type="submit">Guardar</button>
       </form>
