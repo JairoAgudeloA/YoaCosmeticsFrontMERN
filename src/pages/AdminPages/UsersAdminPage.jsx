@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useUser } from '../context/UserContext'
+import { useUser } from '../../context/UserContext'
 import { Link } from 'react-router-dom'
 
 const UsersAdminPage = () => {
@@ -47,7 +47,7 @@ const UsersAdminPage = () => {
                                         <td>{user.email}</td>
                                         <td>{user.role}</td>
                                         <td>
-                                            <Link to={`/user/${user._id}`}><button>Editar</button></Link>
+                                            <Link to={`/admin/user/${user._id}`}><button>Editar</button></Link>
                                             <button
                                                 onClick={() => {
                                                     deleteUser(user._id)
@@ -60,6 +60,7 @@ const UsersAdminPage = () => {
                     </section>
                 </>
             )}
+            <Link to="/admin/dashboard"><button>Volver Tablero</button></Link>
         </>
     )
 }

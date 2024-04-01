@@ -10,8 +10,14 @@ export const Navbar = ({ setSearch }) => {
   const navigate = useNavigate();
   const cart = useCart();
   const { user, isAuthenticated, logout } = useAuth();
+  const [menudropdown, setMenudropdown] = useState(false);
+
 
   const [searchTerm, setSearchTerm] = useState('');
+
+  const clickMenu = () => {
+    setMenudropdown(!menudropdown);
+  };
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -59,10 +65,10 @@ export const Navbar = ({ setSearch }) => {
             <FaTags /> Categorías
           </Link>
         </li>
-        <li className="usermenu">
+        <li className='menud' onClick={clickMenu}>
           <AiOutlineUser />
           {isAuthenticated ? (
-            <ul className="menu-vertical">
+            <ul className={`menu-vertical ${menudropdown  ? 'active' : "" }`}>
               {user.role === 'user' ? (
                 <>
                   <li>
@@ -96,7 +102,7 @@ export const Navbar = ({ setSearch }) => {
               )}
             </ul>
           ) : (
-            <ul className="menu-vertical">
+            <ul className={`menu-vertical ${menudropdown  ? 'active' : "" }`}>
               <li>
                 <Link to="/login">Iniciar Sesion</Link>
               </li>

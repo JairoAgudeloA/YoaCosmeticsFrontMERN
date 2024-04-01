@@ -94,11 +94,10 @@
   .menu-vertical li{
     align-items: center;
     justify-content: center;
-    
     justify-content: center;
     align-items: center;
   }
-  .usermenu:hover .menu-vertical{
+  .menu-vertical.active {
     display: block;
   }
   .menu-vertical li{

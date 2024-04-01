@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useUser } from '../context/UserContext'
+import { useUser } from '../../context/UserContext'
 import {  useForm } from 'react-hook-form'
 import { useNavigate, useParams } from 'react-router-dom'
 
