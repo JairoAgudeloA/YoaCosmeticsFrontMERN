@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useUser } from '../context/UserContext'
+import { useUser } from '../../context/UserContext'
 import { Link } from 'react-router-dom'
 
 const UsersAdminPage = () => {
@@ -57,9 +57,12 @@ const UsersAdminPage = () => {
                                 ))}
                             </tbody>
                         </table>
+                        <Link to="/admin/dashboard"><button>Volver al Tablero</button></Link>
                     </section>
+                    
                 </>
             )}
+            <Link to="/admin/dashboard"><button>Volver al Tablero</button></Link>
         </>
     )
 }

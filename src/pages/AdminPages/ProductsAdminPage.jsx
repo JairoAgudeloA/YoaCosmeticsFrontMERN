@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { useProduct } from '../context/ProductContext'
+import { useProduct } from '../../context/ProductContext.jsx'
 import { Link } from 'react-router-dom'
-import { url_image } from '../api/axios.js'
+import { url_image } from '../../api/axios.js'
 
 const ProductsAdminPage = () => {
   const { products, getProducts, deleteProduct } = useProduct();
@@ -72,12 +72,11 @@ const ProductsAdminPage = () => {
                 ))}
               </tbody>
             </table>
+            <Link to="/admin/dashboard"><button>Volver al Tablero</button></Link>
           </section>
-
         </>
-
       )}
-
+      <Link to="/admin/dashboard"><button>Volver al Tablero</button></Link>
     </>
   )
 }
