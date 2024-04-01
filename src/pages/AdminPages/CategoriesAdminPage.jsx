@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
-import { useCategory } from '../context/CategoryContext'
+import { useCategory } from '../../context/CategoryContext.jsx'
 import { Link } from 'react-router-dom';
-import { url_image } from '../api/axios.js'
+import { url_image } from '../../api/axios.js'
 
 const CategoriesAdminPage = () => {
   const { categories, getCategories, deleteCategory } = useCategory();
@@ -42,7 +42,7 @@ const CategoriesAdminPage = () => {
                       <img src={`${url_image}${category.categoryImage}`} alt={category.categoryImage} width="100px" />
                     </td>
                     <td>
-                      <Link to={`/category/${category._id}`}><button>Editar</button></Link>
+                      <Link to={`/admin/category/${category._id}`}><button>Editar</button></Link>
 
                       <button
                         onClick={() => {
@@ -68,6 +68,7 @@ const CategoriesAdminPage = () => {
         </>
 
       )}
+      <Link to="/admin/dashboard"><button>Volver al Tablero</button></Link>
     </>
   )
 }

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { useCategory } from '../context/CategoryContext';
+import { useCategory } from '../../context/CategoryContext';
 import {useNavigate,useParams} from 'react-router-dom';
 
 

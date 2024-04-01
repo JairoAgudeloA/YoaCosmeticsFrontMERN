@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
-import { useProduct } from '../context/ProductContext'
+import { useProduct } from '../../context/ProductContext'
 import {  useForm } from 'react-hook-form'
 import { useNavigate, useParams } from 'react-router-dom'
-import { useCategory } from '../context/CategoryContext'
-import { url_image } from '../api/axios'
+import { useCategory } from '../../context/CategoryContext'
+import { url_image } from '../../api/axios'
 // import { useAuth } from '../context/AuthContext'
 
 

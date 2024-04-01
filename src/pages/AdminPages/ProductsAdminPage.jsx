@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { useProduct } from '../context/ProductContext'
+import { useProduct } from '../../context/ProductContext.jsx'
 import { Link } from 'react-router-dom'
-import { url_image } from '../api/axios.js'
+import { url_image } from '../../api/axios.js'
 
 const ProductsAdminPage = () => {
   const { products, getProducts, deleteProduct } = useProduct();
@@ -62,7 +62,7 @@ const ProductsAdminPage = () => {
                       {product.category ? product.category.name : <p>Sin Categoria</p>}
                     </td>
                     <td>
-                      <Link to={`/product/${product._id}`}><button>Editar</button></Link>
+                      <Link to={`/admin/product/${product._id}`}><button>Editar</button></Link>
                       <button
                         onClick={() => {
                           deleteProduct(product._id)
@@ -77,7 +77,7 @@ const ProductsAdminPage = () => {
         </>
 
       )}
-
+      <Link to="/admin/dashboard"><button>Volver Tablero</button></Link>
     </>
   )
 }
