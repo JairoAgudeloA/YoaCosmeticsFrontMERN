@@ -42,7 +42,7 @@ const CategoryAdminFormPage = () => {
             createCategory(formData);
         }
         console.log(formData)
-        navigate('/categories');            
+        navigate('/admin/categories');            
         } catch (error) {            
         }      
     });
@@ -86,7 +86,7 @@ const CategoryAdminFormPage = () => {
 
 
                     {params.id ? <button type="submit">Editar</button> : <button type="submit">Crear</button>}
-                    <button onClick={() => navigate('/categories')}>Cancelar</button>
+                    <button onClick={() => navigate('/admin/categories')}>Cancelar</button>
                 </form>
             </section>
         </>

@@ -33,14 +33,21 @@ const OrdersAdminPage = () => {
                   <td>{order.total}</td>
                   <td>{order.status}</td>
                   <td>
-                    <Link to={`/order/${order._id}`}><button>Editar</button></Link>
+                    <Link to={`/admin/order/${order._id}`}><button>Editar</button></Link>
+                    
                     <button
-                      onClick={() => {
-                        deleteOrder(order._id);
-                      }}
-                    >
-                      Borrar
-                    </button>
+                        onClick={() => {
+                          // Mostrar el cuadro de diálogo de confirmación
+                          const confirmation = window.confirm("¿Estás seguro de que deseas borrar esta orden?");
+
+                          // Si el usuario hace clic en "Aceptar", proceder con la eliminación
+                          if (confirmation) {
+                            deleteOrden(orden._id);
+                          }
+                        }}
+                      >
+                        Borrar
+                      </button>
                   </td>
                 </tr>
               ))}

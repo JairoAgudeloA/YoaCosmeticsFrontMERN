@@ -51,7 +51,7 @@ export const UserProvider = ({children}) => {
         try {
             const res = await createUserRequest(user);
             alert('Usuario creado con éxito');
-            navigate('/users');
+            navigate('/admin/users');
             console.log(res.data);
         } catch (error) {
             alert(error.response.data);
@@ -63,8 +63,8 @@ export const UserProvider = ({children}) => {
         try {
             const res = await updateUserRequest(id, user);
             alert('Usuario actualizado con éxito');
-            navigate('/users');
-            console.log(response.data);
+            navigate('/admin/users');
+            console.log(res.data);
         } catch (error) {
             alert(error.response.data)
             setErrors(error.response.data);

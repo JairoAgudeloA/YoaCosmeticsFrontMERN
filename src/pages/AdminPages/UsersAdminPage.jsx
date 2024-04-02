@@ -22,7 +22,7 @@ const UsersAdminPage = () => {
                 <>
                     <section>
                         <h3>No hay usuarios</h3>
-                        <Link to="/user"><button>Crear Usuario</button></Link>
+                        <Link to="/admin/user"><button>Crear Usuario</button></Link>
                     </section>
                 </>
             ) : (
@@ -37,7 +37,7 @@ const UsersAdminPage = () => {
                                     <th>Email</th>
                                     <th>Rol</th>
                                     <th>Acciones</th>
-                                    <th><Link to="/user"><button>Crear Usuario</button></Link></th>
+                                    <th><Link to="/admin/user"><button>Crear Usuario</button></Link></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -48,10 +48,20 @@ const UsersAdminPage = () => {
                                         <td>{user.role}</td>
                                         <td>
                                             <Link to={`/admin/user/${user._id}`}><button>Editar</button></Link>
-                                            <button
-                                                onClick={() => {
-                                                    deleteUser(user._id)
-                                                }}>Borrar</button>
+                                            
+                      <button
+                        onClick={() => {
+                          // Mostrar el cuadro de diálogo de confirmación
+                          const confirmation = window.confirm("¿Estás seguro de que deseas borrar este usuario?");
+
+                          // Si el usuario hace clic en "Aceptar", proceder con la eliminación
+                          if (confirmation) {
+                            deleteUser(user._id);
+                          }
+                        }}
+                      >
+                        Borrar
+                      </button>
                                         </td>
                                     </tr>
                                 ))}

@@ -27,7 +27,7 @@ const ProductsAdminPage = () => {
         <>
           <section>
             <h3>No hay productos</h3>
-            <Link to="/product"><button>Crear Producto</button></Link>
+            <Link to="/admin/product"><button>Crear Producto</button></Link>
           </section>
         </>
       ) : (
@@ -45,7 +45,7 @@ const ProductsAdminPage = () => {
                   <th>Imagen</th>
                   <th>Categoria</th>
                   <th>Acciones</th>
-                  <th><Link to="/product"><button>Crear Producto</button></Link></th>
+                  <th><Link to="/admin/product"><button>Crear Producto</button></Link></th>
                 </tr>
               </thead>
               <tbody>
@@ -63,10 +63,20 @@ const ProductsAdminPage = () => {
                     </td>
                     <td>
                       <Link to={`/admin/product/${product._id}`}><button>Editar</button></Link>
+                      
                       <button
                         onClick={() => {
-                          deleteProduct(product._id)
-                        }}>Borrar</button>
+                          // Mostrar el cuadro de diálogo de confirmación
+                          const confirmation = window.confirm("¿Estás seguro de que deseas borrar este producto?");
+
+                          // Si el usuario hace clic en "Aceptar", proceder con la eliminación
+                          if (confirmation) {
+                            deleteProduct(product._id);
+                          }
+                        }}
+                      >
+                        Borrar
+                      </button>
                     </td>
                   </tr>
                 ))}

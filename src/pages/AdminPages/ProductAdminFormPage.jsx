@@ -62,7 +62,7 @@ const ProductAdminFormPage = () => {
       } else {
         await createProduct(formData);
       }
-      navigate('/products');
+      navigate('/admin/products');
     } catch (error) {
       // Maneja el error
     }
@@ -143,7 +143,7 @@ const ProductAdminFormPage = () => {
             {errors.category && <span>Este campo es requerido</span>}
           </div>
           {params.id ? <button type="submit">Editar</button> : <button type="submit">Crear</button>}
-          <button onClick={() => navigate('/products')}>Cancelar</button>
+          <button onClick={() => navigate('/admin/products')}>Cancelar</button>
         </form>
       </section>
     </>
