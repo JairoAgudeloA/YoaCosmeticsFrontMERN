@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import '../assets/styles/components/Navbar.css';
 import { AiOutlineHome, AiOutlineSearch, AiOutlineShoppingCart, AiOutlineUser } from 'react-icons/ai';
 import { FaTags } from 'react-icons/fa';
@@ -11,25 +11,9 @@ export const Navbar = ({ setSearch }) => {
   const cart = useCart();
   const { user, isAuthenticated, logout } = useAuth();
   const [menudropdown, setMenudropdown] = useState(false);
+
+
   const [searchTerm, setSearchTerm] = useState('');
-
-  const menuRef = useRef(null);
-
-  useEffect(() => {
-    // Agregar event listener al montar el componente
-    document.addEventListener('mousedown', handleClickOutside);
-    // Retirar el event listener al desmontar el componente
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
-
-  const handleClickOutside = (event) => {
-    if (menuRef.current && !menuRef.current.contains(event.target)) {
-      // Cerrar el menú si el clic se realiza fuera de él
-      setMenudropdown(false);
-    }
-  };
 
   const clickMenu = () => {
     setMenudropdown(!menudropdown);
@@ -46,26 +30,26 @@ export const Navbar = ({ setSearch }) => {
     setSearch(e.target.value); // Llama a la función setSearch pasada como prop para actualizar el estado de búsqueda en el componente padre
     console.log(e.target.value);
   };
-
   return (
     <nav className="navbar">
       <ul className="elementos">
         <li>
           <Link to="/">
-            <h1>Yoa Cosmetics</h1>
+            <p className='title'>YOA COSMETICS</p>
           </Link>
         </li>
         <li>
           <div className="search-container">
+            {/* <input type="text" placeholder="Buscar Producto" className="searchs" onChange={searchProduct} /> */}
             <form onSubmit={handleSearchSubmit}>
-              <input onChange={searchProduct} type="text" placeholder="Buscar Producto" className='searchs' />
+              <input onChange={searchProduct} type="text" placeholder="Buscar.." className='searchs' />
               <button type="submit"><AiOutlineSearch /></button>
             </form>
           </div>
         </li>
         <li>
           <Link to="/">
-            <AiOutlineHome /> Inicio
+            <AiOutlineHome /> 
           </Link>
         </li>
         <li>
@@ -81,7 +65,7 @@ export const Navbar = ({ setSearch }) => {
             <FaTags /> Categorías
           </Link>
         </li>
-        <li className='menud' onClick={clickMenu} ref={menuRef}>
+        <li className='menud' onClick={clickMenu}>
           <AiOutlineUser />
           {isAuthenticated ? (
             <ul className={`menu-vertical ${menudropdown  ? 'active' : "" }`}>
@@ -132,7 +116,6 @@ export const Navbar = ({ setSearch }) => {
     </nav>
   );
 };
-
 
 // import React, { useState } from 'react';
 // import '../assets/styles/components/Navbar.css';
