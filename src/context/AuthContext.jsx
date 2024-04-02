@@ -119,6 +119,11 @@ export const AuthProvider = ({ children }) => {
       setUser(res.data);
       setIsAuthenticated(true);
       saveAuthToLocalStorage({ user: res.data, isAuthenticated: true });
+      if (res.data.role === "admin") {
+        navigate("/admin/dashboard");
+      } else {
+        navigate("/");
+      }
     } catch (error) {
       console.log(error.response);
       setErrors(error.response.data);
