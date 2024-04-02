@@ -107,6 +107,7 @@ export const AuthProvider = ({ children }) => {
       navigate("/login");
       alert("Usuario creado con éxito");
       setUser(res.data);
+      
     } catch (error) {
       alert(error.response.data);
       setErrors(error.response.data);
