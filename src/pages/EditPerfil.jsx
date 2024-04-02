@@ -37,7 +37,7 @@ export const EditPerfil = () => {
     try {
       await updateProfile(data); // Enviar los datos al backend
       // Puedes realizar alguna acción adicional después de enviar los datos, como redirigir a otra página
-      navigate('/perfil'); // Redirigir a la página de perfil después de guardar los cambios
+      navigate('/profile'); // Redirigir a la página de perfil después de guardar los cambios
     } catch (error) {
       console.error(error);
       // Manejar el error, si es necesario

@@ -91,7 +91,7 @@ return (
             </div>
             <div>
                 {params.id ? <button type="submit">Editar</button> : <button type="submit">Crear</button>}
-                <button onClick={() => navigate('/users')}>Cancelar</button>
+                <button onClick={() => navigate('/admin/users')}>Cancelar</button>
             </div>
         </form>
     </section>

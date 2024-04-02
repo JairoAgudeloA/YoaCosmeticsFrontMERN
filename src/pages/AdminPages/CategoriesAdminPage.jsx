@@ -16,7 +16,7 @@ const CategoriesAdminPage = () => {
         <>
           <section>
             <h3>No hay categorias</h3>
-            <Link to="/category"><button>Crear Categoría</button></Link>
+            <Link to="/admin/category"><button>Crear Categoría</button></Link>
           </section>
         </>
       ) : (
@@ -30,7 +30,7 @@ const CategoriesAdminPage = () => {
                   <th>Descripción</th>
                   <th>Imagen</th>
                   <th>Acciones</th>
-                  <th><Link to="/category"><button>Crear Categoría</button></Link></th>
+                  <th><Link to="/admin/category"><button>Crear Categoría</button></Link></th>
                 </tr>
               </thead>
               <tbody>

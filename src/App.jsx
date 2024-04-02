@@ -11,7 +11,7 @@ import { Footer } from "./components/Footer";
 import { WhatsAppButton } from "./components/WhatsAppButton";
 import { EditPerfil } from "./pages/EditPerfil";
 
-import ProtectedRoute from "./ProtectedRoute";
+import {ProtectedRoute, ProtectedRouteAdmin} from "./ProtectedRoute";
 import "./index.css"
 
 {/*estas son las rutas del admin*/ }
@@ -62,7 +62,7 @@ function App() {
 
                     {/* Futuras rutas de los admin */}
 
-                    {/* <Route> */}
+                    <Route element={<ProtectedRouteAdmin/>}>
                       <Route path="/admin/dashboard" element={<DashboardAdminPage />} /> {/* Ruta para ver el dashboard */}
                       <Route path="/admin/categories" element={<CategoriesAdminPage />} /> {/* Ruta para ver todas las categorias */}
                       <Route path="/admin/category" element={<CategoryAdminFormPage />} /> {/* Ruta para crear una categoria */}
@@ -79,7 +79,7 @@ function App() {
                       <Route path="/admin/user/:id" element={<UserAdminFormPage />} /> {/* Ruta para editar una usuario */}
 
                       <Route path="/admin/orders" element={<OrdersAdminPage />} /> {/* Ruta para ver todas las ordenes */}
-                    {/* </Route> */}
+                    </Route>
 
                   </Routes>
                   <WhatsAppButton />
