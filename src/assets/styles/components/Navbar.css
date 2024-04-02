@@ -1,4 +1,3 @@
-
 * 
 {
     margin: 0;
@@ -11,18 +10,24 @@
     align-items: center;
     flex-wrap: wrap;
     color: black;
-    padding: 10px 20px;
+    padding: 30px 60px;
     text-align: center;
     max-width: 100%;
     /* border-bottom: 1px solid #e5e7eb;  */
-    box-shadow: 0 4px 6px 1px rgba(0, 0, 0, 0.1); /* Sombra más pronunciada */
-    background-color: var(--colorwhite);
-    flex: 1;
-  }
+    /* box-shadow: 0 4px 6px 1px rgba(0, 0, 0, 0.1); Sombra más pronunciada */
+    background-color: transparent; /* Hacer el fondo transparente por defecto */
+    transition: background-color 0.3s ease;
+    
+      }
+
+      .navbar:hover {
+        background-color: rgb(189, 199, 201); /* Cambiar el color al pasar el cursor */
+      }
   
   .search-container {
     position: relative;
     flex: 1;
+    
     
   }
   
@@ -30,7 +35,7 @@
   .search-container input {
     padding: 8px; /* Espaciado interno */
     border: 1px solid #ccc; /* Borde del campo de entrada */
-    border-radius: 4px; /* Borde redondeado */
+    border-radius: 15px; /* Borde redondeado */
     width: 24rem;
     outline: none;
     font-size: 1rem;
@@ -52,7 +57,7 @@
     color: #fff; /* Color del texto del botón */
     font-size: 1.5rem;
     border: none; /* Quitar borde */
-    border-radius: 4px; /* Borde redondeado */
+    border-radius: 15px; /* Borde redondeado */
     cursor: pointer; /* Cambiar el cursor al pasar por encima */
     width: 6rem;
     flex: 1;
@@ -74,14 +79,15 @@
   
   .elementos li {
     margin-right: 20px;
-    font-size: 20px;
+    font-size: 22px;
   }
   
   .elementos li a {
     color: #0f0b0b;
     text-decoration: solid;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Times New Roman';
     font-weight: bold;
+    font-size: 22px;
   }
   .menu-vertical{
     position:absolute;
@@ -102,6 +108,11 @@
   }
   .menu-vertical li{
     padding: 6px;
+  }
+
+  .elementos p{
+    color: black;
+    font-size: 40px;
   }
   
   @media screen and (max-width: 768px) {
