@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import '../assets/styles/components/Navbar.css';
 import { AiOutlineHome, AiOutlineSearch, AiOutlineShoppingCart, AiOutlineUser } from 'react-icons/ai';
 import { FaTags } from 'react-icons/fa';
@@ -11,9 +11,24 @@ export const Navbar = ({ setSearch }) => {
   const cart = useCart();
   const { user, isAuthenticated, logout } = useAuth();
   const [menudropdown, setMenudropdown] = useState(false);
-
-
   const [searchTerm, setSearchTerm] = useState('');
+  const menuRef = useRef(null); // Referencia al menú
+
+  // Función para cerrar el menú cuando se hace clic fuera de él
+  const handleClickOutside = (event) => {
+    if (menuRef.current && !menuRef.current.contains(event.target)) {
+      setMenudropdown(false);
+    }
+  };
+
+  useEffect(() => {
+    // Agregar event listener cuando el componente se monta
+    document.addEventListener('mousedown', handleClickOutside);
+    // Limpiar event listener cuando el componente se desmonta
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const clickMenu = () => {
     setMenudropdown(!menudropdown);
@@ -40,7 +55,6 @@ export const Navbar = ({ setSearch }) => {
         </li>
         <li>
           <div className="search-container">
-            {/* <input type="text" placeholder="Buscar Producto" className="searchs" onChange={searchProduct} /> */}
             <form onSubmit={handleSearchSubmit}>
               <input onChange={searchProduct} type="text" placeholder="Buscar.." className='searchs' />
               <button type="submit"><AiOutlineSearch /></button>
@@ -65,7 +79,7 @@ export const Navbar = ({ setSearch }) => {
             <FaTags /> Categorías
           </Link>
         </li>
-        <li className='menud' onClick={clickMenu}>
+        <li className='menud' onClick={clickMenu} ref={menuRef}>
           <AiOutlineUser />
           {isAuthenticated ? (
             <ul className={`menu-vertical ${menudropdown  ? 'active' : "" }`}>
@@ -116,6 +130,7 @@ export const Navbar = ({ setSearch }) => {
     </nav>
   );
 };
+
 
 // import React, { useState } from 'react';
 // import '../assets/styles/components/Navbar.css';
