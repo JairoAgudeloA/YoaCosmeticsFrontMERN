@@ -89,6 +89,9 @@
     font-weight: bold;
     font-size: 22px;
   }
+  .menud{
+    cursor: pointer;
+  }
   .menu-vertical{
     position:absolute;
     display: none;

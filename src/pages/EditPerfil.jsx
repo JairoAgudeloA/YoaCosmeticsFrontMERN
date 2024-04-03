@@ -1,43 +1,45 @@
 import React, { useEffect, useRef } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useForm } from 'react-hook-form';
-import { useNavigate,useParams } from 'react-router-dom';
+import { Link, useNavigate,useParams } from 'react-router-dom';
 import { url_image } from "../api/axios";
 
 export const EditPerfil = () => {
-  const { user,profile,updateProfile } = useAuth();
+  const { user,profile,updateProfile , errors:profileErrors} = useAuth();
   const { register, handleSubmit, formState: { errors }, setValue } = useForm();
   const navigate = useNavigate();
   const params = useParams();
- 
-  // const onSubmit = handleSubmit(async (data) => {
-  //   try {
-  //     await updateProfile(data);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // });
+
   useEffect(() => {
-    const fetchProfileData = async () => {
-      try {
-        const res = await profile();
-        // Establecer los valores de los campos del formulario con los datos del perfil del usuario
-        setValue('username', res.data.username);
-        setValue('email', res.data.email);
-        // Establecer otros valores si es necesario
-      } catch (error) {
-        console.error('Error loading user profile:', error);
-        // Manejar el error
-      }
-    };
-  
-    fetchProfileData();
-  }, []);
+    if(user){
+      setValue('username', user.username);
+      setValue('email', user.email);
+      setValue('phone', user.phone);
+      setValue('birthdate', user.birthdate);
+      setValue('biography', user.biography);
+      setValue('profileImage', user.profileImage);
+    }
+  }, [user]);
+
   const onSubmit = handleSubmit(async (data) => {
+    const formData = new FormData();
+    // Iterar sobre cada campo en los datos del formulario
+    for (const key in data) {
+      if (data.hasOwnProperty(key)) {
+        // Si el campo es 'profileImage', añadir el archivo al formData
+        if (key === 'profileImage') {
+          formData.append(key, data[key][0]);
+        } else {
+          // Para todos los demás campos, añadir el valor al formData
+          formData.append(key, data[key]);
+        }
+      }
+    }
+
     try {
       await updateProfile(data); // Enviar los datos al backend
       // Puedes realizar alguna acción adicional después de enviar los datos, como redirigir a otra página
-      navigate('/profile'); // Redirigir a la página de perfil después de guardar los cambios
+       // Redirigir a la página de home después de guardar los cambios
     } catch (error) {
       console.error(error);
       // Manejar el error, si es necesario
@@ -48,6 +50,9 @@ export const EditPerfil = () => {
   return (
     <>
     <section>
+      {profileErrors.map((error, i) => (
+        <p key={i} className="error-message">{error}</p>
+      ))}
       <form onSubmit={onSubmit}>
         <h1>Editar Perfil</h1>
         <div>
@@ -84,14 +89,14 @@ export const EditPerfil = () => {
         </div>
 
         <div>
-          <label htmlFor="newpassword">Nueva Contraseña</label>
+          <label htmlFor="newPassword">Nueva Contraseña</label>
           <input
             type="password"
-            id="newpassword"
-            name="newpassword"
-            {...register('newpassword', { required: true })}
+            id="newPassword"
+            name="newPassword"
+            {...register('newPassword', { required: true })}
           />
-          {errors.newpassword && <span>Este campo es requerido</span>}
+          {errors.newPassword && <span>Este campo es requerido</span>}
         </div>
 
         <div>
@@ -144,10 +149,14 @@ export const EditPerfil = () => {
             name='profileImage'
             {...register('profileImage')}
           />
-        </div>
-        <button type="submit">Guardar</button>
+        </div>        
+          <button type="submit">Guardar</button>          
       </form>
+      <Link to="/"><button>Volver</button></Link>
 
+      <div>
+          <img src={`${url_image}${user.profileImage}`} alt={user.username} />
+        </div>
     </section>
 
     </>
