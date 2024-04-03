@@ -62,27 +62,6 @@ export const AuthProvider = ({ children }) => {
     checkLogin();
   }, []);
 
-  //copilotuseEffect(() => {
-    useEffect(() => {
-      async function loadUserProfile() {
-        try {
-          const res = await profile();
-          if (res && res.data) { // Verificar si res y res.data son definidos
-            setUser(res.data);
-          } else {
-            console.error('La respuesta de perfil no tiene la estructura esperada:', res);
-            setErrors("La respuesta de perfil no tiene la estructura esperada");
-          }
-        } catch (error) {
-          console.error('Error loading user profile:', error);
-          // Manejar el error
-        }
-      }
-      if (isAuthenticated) {
-        loadUserProfile();
-      }
-    }, [isAuthenticated]);
-    
 
 
   // Save auth data to localStorage
@@ -134,25 +113,21 @@ export const AuthProvider = ({ children }) => {
   const profile = async () => {
     try {
       const res = await profileRequest();
-      if (res && res.data) {
-        setUser(res.data);
-        setIsAuthenticated(true);
-      } else {
-        console.error('La respuesta de perfil no tiene la estructura esperada:', res);
-        setErrors("La respuesta de perfil no tiene la estructura esperada");
-      }
+      setUser(res.data);
     } catch (error) {
-      console.error('Error al obtener el perfil:', error);
-      setErrors(error.response ? error.response.data : "Error al obtener el perfil");
+      console.log(error.response.data);
+      setErrors(error.response.data);
     }
-  };
+  }
 
   const updateProfile = async (user) => {
     try {
       const res = await updateProfileRequest(user);
       setUser(res.data);
+      navigate('/');
+      alert("Perfil actualizado con éxito");
     } catch (error) {
-      console.log(error.response);
+      console.log(error.response.data);
       setErrors(error.response.data);
     }
   };
