@@ -1,19 +1,21 @@
 
 
 :root{
-  --colorpurple:rgba(112, 34, 74, 1);
-  --colorwhite:rgb(255, 249, 249);
+  --colorwhite:#f8f7f7;
+  --colorgreen:rgb(7, 7, 7);
   --boxshadow:10px 10px 10px 10px rgba(0, 0, 0, 0.1); /*este es un shadow para el form*/
-  --colorhover:rgb(207, 30, 121);
+  --colorhover:rgb(255, 160, 122);
+  --tipoletra:'Times New Roman';
 }
 .root{
-  background-color: var(--colorwhite);
+  background-color: var(--colorgreen);
+
 }
 
-button{
-  background-color: var(--colorpurple);
-  color: var(--colorwhite);
-}
-button:hover{
+/* button{
+  background-color: var(--colorgreen);
+  color: var(--colorgreen);
+} */
+/* button:hover{
   background-color: var(--colorhover);
-}
+} */

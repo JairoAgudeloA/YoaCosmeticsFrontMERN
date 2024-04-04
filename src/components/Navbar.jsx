@@ -45,17 +45,6 @@ export const Navbar = ({ setSearch }) => {
     setSearch(e.target.value); // Llama a la función setSearch pasada como prop para actualizar el estado de búsqueda en el componente padre
     console.log(e.target.value);
   };
-
-
-  
-  function getUniqueProductCount() {
-    const uniqueProductIds = new Set();
-    cart.forEach(product => {
-      uniqueProductIds.add(product.id);
-    });
-    return uniqueProductIds.size;
-  }
-
   return (
     <nav className="navbar">
       <ul className="elementos">
@@ -77,6 +66,7 @@ export const Navbar = ({ setSearch }) => {
             <AiOutlineHome /> 
           </Link>
         </li>
+        
         <li>
           <div>
             <Link to="/cart">
@@ -85,11 +75,7 @@ export const Navbar = ({ setSearch }) => {
             <span>{cart.length}</span>
           </div>
         </li>
-        <li>
-          <Link to="/categorieslist">
-            <FaTags /> Categorías
-          </Link>
-        </li>
+        
         <li className='menud' onClick={clickMenu} ref={menuRef}>
           <AiOutlineUser />
           {isAuthenticated ? (
@@ -99,9 +85,9 @@ export const Navbar = ({ setSearch }) => {
                   <li>
                     <Link to="/profile">Perfil</Link>
                   </li>
-                  <li>
+                  {/* <li>
                     <Link to="/orders">Mis Ordenes</Link>
-                  </li>
+                  </li> */}
                   <li>
                     <Link to="/" onClick={() => logout()}>
                       Cerrar Sesión

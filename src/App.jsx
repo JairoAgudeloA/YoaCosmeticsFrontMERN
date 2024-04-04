@@ -6,7 +6,6 @@ import { LoginPage } from "./pages/LoginPage";
 import { RegisterPage } from "./pages/RegisterPage";
 import { Navbar } from "./components/Navbar";
 import CartPage from "./pages/CartPage";
-import FavoritePage from "./pages/FavoritePage";
 import { Footer } from "./components/Footer";
 import { WhatsAppButton } from "./components/WhatsAppButton";
 import { EditPerfil } from "./pages/EditPerfil";
@@ -50,7 +49,6 @@ function App() {
                     <Route path="/" element={<HomePage search={search} />} />
                     <Route path="/search/:search" element={<SearchResultsPage search={search} />} />
                     <Route path="/cart" element={<CartPage />} />
-                    <Route path="/favorites" element={<FavoritePage />} />
                     {/* <Route path="/contactus" element={<ContactPage />} /> */}
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/register" element={<RegisterPage />} />

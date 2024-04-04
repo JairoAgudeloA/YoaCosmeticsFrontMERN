@@ -3,6 +3,7 @@ import { useAuth } from '../context/AuthContext';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate,useParams } from 'react-router-dom';
 import { url_image } from "../api/axios";
+import '../assets/styles/pages/EditPerfil.css';
 
 export const EditPerfil = () => {
   const { user,profile,updateProfile , errors:profileErrors} = useAuth();
@@ -49,7 +50,7 @@ export const EditPerfil = () => {
 
   return (
     <>
-    <section>
+    <section className= "form-container2">
       {profileErrors.map((error, i) => (
         <p key={i} className="error-message">{error}</p>
       ))}
@@ -150,9 +151,10 @@ export const EditPerfil = () => {
             {...register('profileImage')}
           />
         </div>         */}
-          <button type="submit">Guardar</button>          
+          <button type="submit">Guardar</button>   
+          <Link to="/"><button>Volver</button></Link>        
       </form>
-      <Link to="/"><button>Volver</button></Link>
+      
 
       {/* <div>
           <img src={`${url_image}${user.profileImage}`} alt={user.username} />

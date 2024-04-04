@@ -1,0 +1,94 @@
+/* Estilos para la tabla */
+.fondito {
+background-color: #f2f2f2;
+
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    text-align: right;
+    font-family: var(--tipoletra);
+    font-size: 40px;
+  }
+  
+  /* Estilo para las filas pares */
+  tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  /* Estilo para las filas impares */
+  tbody tr:nth-child(odd) {
+    background-color: #ccc;
+  }
+  
+  /* Cambiar el color al pasar el mouse */
+  tbody tr:hover {
+    background-color: #ddd;
+  }
+
+  section h1{
+
+    font-family: var(--tipoletra);
+    font-size: 40px;
+    margin-bottom: 10px;
+    text-align: center;
+    color: #0c0c0c;
+    margin-top: 30px;
+    padding-top: 20px;
+  }
+  
+  .table-container {
+    width: 100%;
+    margin-top: 0px; /* Agrega un espacio entre la tabla y los botones */
+    display: flex;
+    justify-content: center; /* Centra los elementos horizontalmente */
+    align-items: center; /* Centra los elementos verticalmente */
+    font-family: var(--tipoletra);
+    margin-bottom: 20px;
+    background-color: #f2f2f2;
+    height: 100px;
+    padding-bottom:10px ;
+    margin-bottom: 60px;
+  }
+  
+  .table-container button {
+    width: calc(80% - 0px); /* Ancho del botón igual al 50% del contenedor menos el margen entre botones */
+    padding: 4px 46px;
+    background-color: #000000;
+    color: #fff;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: 40px; /* Espacio entre los botones */
+  }
+   
+  .table-container button:first-child {
+    margin-left: 0; /* Elimina el margen izquierdo del primer botón */
+  }
+  
+  .table-container button:hover {
+    background-color: #e95050;
+  }
+  
+  section button {
+    width: 40%;
+    padding: 8px 16px;
+    background-color: #000000;
+    color: #fff;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px; /* Agrega un espacio entre el botón y la tabla */
+    margin-left: 10px; /* Espacio entre los botones */
+  }
+   section button:hover {
+    background-color: #e95050;
+    }

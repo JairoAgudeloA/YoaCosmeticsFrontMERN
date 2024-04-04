@@ -57,10 +57,10 @@ export const LoginPage = () => {
             {errors.password && <p className="error-message">Contraseña es requerida</p>}
           </div>
           <button type="submit">Iniciar Sesion</button>
-          <p>
+          <h2>
             ¿Aun no tienes una cuenta?
             <Link to="/register">
-              Registrarse</Link></p>
+              Registrarse</Link></h2>
         </form>
       </section>
     </>
