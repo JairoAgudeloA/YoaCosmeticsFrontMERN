@@ -31,7 +31,7 @@ export const OrderProvider = ({ children }) => {
             const response = await createOrderRequest(orderData);
             alert('Orden creada con éxito')
             dispatch({ type: 'removeallproducts' });
-            navigate('/voucher')
+            navigate('/')
             setOrder(response.data);
             return response.data;
         } catch (error) {

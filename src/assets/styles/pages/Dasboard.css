@@ -1,0 +1,50 @@
+.dashboard {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.dashboard h1 {
+    margin-bottom: 20px; /* Espacio entre el título y las tarjetas */
+}
+
+.tarjetas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    
+}
+
+.tarjetas article {
+    text-align: center;
+    padding: 20px;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    width: 200px; /* Ancho de las tarjetas */
+    margin-bottom: 50px;
+    font-family: var(--tipoletra);
+}
+
+.tarjetas article:hover {
+    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+.tarjetas article h2 {
+    font-size: 35px;
+}
+
+.tarjetas article button {
+    padding: 15px 10px;
+    background-color: #000000;
+    margin: 20px;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    
+}
+
+.tarjetas article button:hover {
+    background-color: var(--colorhover);
+}
