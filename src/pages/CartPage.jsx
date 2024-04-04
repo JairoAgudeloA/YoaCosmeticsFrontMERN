@@ -3,36 +3,47 @@ import { useCart, useCartDispatchs } from '../context/CartContext'
 import { url_image } from '../api/axios';
 import { FaPlus, FaMinus, FaTrashAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { initMercadoPago, Wallet } from '@mercadopago/sdk-react';
+// import { initMercadoPago, Wallet } from '@mercadopago/sdk-react';
 import { useOrder } from '../context/OrderContext';
 import { useState } from 'react';
-
 
 const CartPage = () => {
   const [preferenceId, setPreferenceId] = useState(null);
 
-  initMercadoPago('YOUR_PUBLIC_KEY',
-    {
-      locale: 'es-CO',
-      style: {
-        type: 'default',
-        size: 'responsive',
-        theme: 'default'
-      }
-    });
+  // initMercadoPago('YOUR_PUBLIC_KEY',
+  //   {
+  //     locale: 'es-CO',
+  //     style: {
+  //       type: 'default',
+  //       size: 'responsive',
+  //       theme: 'default'
+  //     }
+  //   });
   const cart = useCart();
   const dispatch = useCartDispatchs();
-  const order  = useOrder();
+  const {order, createOrderCart }  = useOrder();
 
   const createOrder = async () => {
-    const orderData = {
-      products: cart.map(product => ({ product: product._id, quantity: product.count })),
-      total: cart.reduce((acc, product) => acc + product.price * product.count, 0)
+    try {
+      const orderData = {
+        products: cart.map(product => ({ product: product._id,name:product.name, quantity: product.count, price: product.price, subtotal: product.price * product.count})),
+        total: cart.reduce((acc, product) => acc + product.price * product.count, 0)
+      }
+      const response = await createOrderCart(orderData); // Llama a la función de la API para crear la orden
+      setPreferenceId(response.data.preferenceId); // Ajusta el estado según la respuesta de la API si es necesario
+    } catch (error) {
+      console.error(error);
     }
-    const response = await order.createOrder(orderData);
-    setPreferenceId(response.preferenceId);
   }
+  // const handleBuy = async () => {
+  //   const orderData = await createOrder();
+  //   console.log(orderData)
+  //   if(orderData){
+  //     setPreferenceId(orderData);
+  //   }
+  // }
 
+  
   return (
     <>
       <section>
@@ -90,13 +101,7 @@ const CartPage = () => {
               </tbody>
             </table>
             <h2>Total: {cart.reduce((acc, product) => acc + product.price * product.count, 0)}</h2>
-
-            <Link to='/checkout'><button>Comprar</button></Link>
-
             <button onClick={createOrder}>Pagar</button>
-            {preferenceId && 
-            <Wallet initialization={{ preferenceId: preferenceId }} customization={{ texts:{ valueProp: 'smart_option'}}} />            
-            }
 
             
           </>

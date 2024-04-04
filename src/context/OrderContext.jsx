@@ -21,7 +21,7 @@ export const OrderProvider = ({ children }) => {
         }
     };
 
-    const createOrder = async (orderData) => {
+    const createOrderCart = async (orderData) => {
         try {
             const response = await createOrderRequest(orderData);
             setOrder(response.data);
@@ -66,7 +66,7 @@ export const OrderProvider = ({ children }) => {
     };
 
     return (
-        <OrderContext.Provider value={{ order, createOrder, getOrder, updateOrder, deleteOrder, error }}>
+        <OrderContext.Provider value={{ order, createOrderCart, getOrder, updateOrder, deleteOrder, error }}>
             {children}
         </OrderContext.Provider>
     );

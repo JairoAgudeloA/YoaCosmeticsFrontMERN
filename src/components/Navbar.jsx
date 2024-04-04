@@ -45,6 +45,17 @@ export const Navbar = ({ setSearch }) => {
     setSearch(e.target.value); // Llama a la función setSearch pasada como prop para actualizar el estado de búsqueda en el componente padre
     console.log(e.target.value);
   };
+
+
+  
+  function getUniqueProductCount() {
+    const uniqueProductIds = new Set();
+    cart.forEach(product => {
+      uniqueProductIds.add(product.id);
+    });
+    return uniqueProductIds.size;
+  }
+
   return (
     <nav className="navbar">
       <ul className="elementos">
