@@ -30,6 +30,7 @@ export const Main = ({search}) => {
                 <button
                 onClick={() =>{
                     dispatch({type:'addproductincart',product:product})
+                    alert('Producto añadido al carrito')
                 }}>AÑADIR</button>
             </div>
         ))}
