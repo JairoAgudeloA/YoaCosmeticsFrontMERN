@@ -141,7 +141,7 @@ export const EditPerfil = () => {
           />
         </div>
 
-        <div>
+        {/* <div>
           <label htmlFor='profileImage'>Foto</label>
           <input 
             type='file'
@@ -149,14 +149,14 @@ export const EditPerfil = () => {
             name='profileImage'
             {...register('profileImage')}
           />
-        </div>        
+        </div>         */}
           <button type="submit">Guardar</button>          
       </form>
       <Link to="/"><button>Volver</button></Link>
 
-      <div>
+      {/* <div>
           <img src={`${url_image}${user.profileImage}`} alt={user.username} />
-        </div>
+        </div> */}
     </section>
 
     </>

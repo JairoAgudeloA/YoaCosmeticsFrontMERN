@@ -30,7 +30,7 @@ const CartPage = () => {
         total: cart.reduce((acc, product) => acc + product.price * product.count, 0)
       }
       const response = await createOrderCart(orderData); // Llama a la función de la API para crear la orden
-      setPreferenceId(response.data.preferenceId); // Ajusta el estado según la respuesta de la API si es necesario
+      setPreferenceId(response.orderData); // Ajusta el estado según la respuesta de la API si es necesario
     } catch (error) {
       console.error(error);
     }
