@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useProduct } from '../../context/ProductContext.jsx'
 import { Link } from 'react-router-dom'
 import { url_image } from '../../api/axios.js'
+import '../../assets/styles/pages/ProductsAdminPage.css'
 
 const ProductsAdminPage = () => {
   const { products, getProducts, deleteProduct } = useProduct();
@@ -32,10 +33,12 @@ const ProductsAdminPage = () => {
         </>
       ) : (
         <>
-          <section>
+          <section className="fondito2">
             <h1>Productos</h1>
-            <input value={search} onChange={searchProduct} type="text" placeholder="Buscar Producto" className='searchs' />
-            <table>
+            <div class="busqueda-container">
+            <input value={search} onChange={searchProduct} type="text" placeholder="Buscar Productos..." className='searchs' />
+            </div>
+            <table >
               <thead>
                 <tr>
                   <th>Nombre</th>
@@ -45,7 +48,6 @@ const ProductsAdminPage = () => {
                   <th>Imagen</th>
                   <th>Categoria</th>
                   <th>Acciones</th>
-                  <th><Link to="/admin/product"><button>Crear Producto</button></Link></th>
                 </tr>
               </thead>
               <tbody>
@@ -83,11 +85,14 @@ const ProductsAdminPage = () => {
               </tbody>
             </table>
           </section>
-
+          <div className="table-container">
+          <Link to="/admin/product"><button>Crear Producto</button></Link>
+          <Link to="/admin/dashboard"><button>Volver Tablero</button></Link>
+          </div>
         </>
 
       )}
-      <Link to="/admin/dashboard"><button>Volver Tablero</button></Link>
+      
     </>
   )
 }

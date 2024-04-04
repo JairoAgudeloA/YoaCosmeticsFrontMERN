@@ -35,14 +35,6 @@ const CartPage = () => {
       console.error(error);
     }
   }
-  // const handleBuy = async () => {
-  //   const orderData = await createOrder();
-  //   console.log(orderData)
-  //   if(orderData){
-  //     setPreferenceId(orderData);
-  //   }
-  // }
-
   
   return (
     <>

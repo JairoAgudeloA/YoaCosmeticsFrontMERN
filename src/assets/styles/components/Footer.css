@@ -1,10 +1,13 @@
 .footer {
-  background-color:  rgba(177, 167, 167, 0.514);
-  color: #0f0c0c;
-  padding: 20px ;
-  box-shadow: 0 -4px 6px 1px rgba(0, 0, 0, 0.1);
+  position: fixed;
   bottom: 0;
-  max-width: 100%;
+  left: 0;
+  width: 100%;
+  background-color: rgba(177, 167, 167, 0.514);
+  color: #0f0c0c;
+  padding: 20px;
+  box-shadow: 0 -4px 6px 1px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Asegura que el footer esté en la parte superior */
   
 }
 
@@ -54,6 +57,10 @@
 
 .footer-content p:first-child {
   font-weight: bold;
+}
+
+.footer:hover{
+  background-color: var(--colorwhite);
 }
 
 @media screen and (max-width: 768px) {

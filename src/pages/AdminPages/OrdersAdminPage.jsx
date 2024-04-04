@@ -31,7 +31,7 @@ const OrdersAdminPage = () => {
         </>
       ) : (
         <>
-          <section>
+          <section className="fondito2">
             <h1>Ordenes</h1>
             <table>
               <thead>

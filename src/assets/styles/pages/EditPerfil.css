@@ -1,19 +1,63 @@
-.form-container112 {
+.form-container2 {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background-size: cover;
-    background-position: center;
-    flex-direction: column;
+    height: 100vh; /* Ajusta la altura según sea necesario */
+    padding: 150px;
+    
   }
+  
+  .form-container2 form {
+    width: 300px; /* Ancho del formulario */
+    padding: 45px; /* Espacio alrededor del formulario */
 
-h2 {
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.contenedorperfil:hover{
+    border-radius: 10px; /* Borde redondeado */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra alrededor del formulario */
+    max-width: 400px;
+  }
+  
+  .form-container2 h1 {
+    text-align: center; /* Centrar el título */
+    margin-bottom: 20px; /* Espacio inferior del título */
+    font-family: var(--tipoletra);
+  }
+  
+  .form-container2 div {
+    margin-bottom: 15px; /* Espacio entre los elementos */
+  }
+  
+  .form-container2 label {
+    display: block; /* Hacer que las etiquetas ocupen una línea completa */
+    margin-bottom: 5px; /* Espacio inferior de las etiquetas */
+    font-family: var(--tipoletra);
+    font-size: 20PX;
+  }
+  
+  .form-container2 input {
+    width: calc(100% - 10px); /* Ancho del campo de entrada */
+    padding: 10px; /* Espacio interno del campo de entrada */
+    border-radius: 10px; /* Borde redondeado del campo de entrada */
+    border: 1px solid #ccc; /* Borde del campo de entrada */
+    outline: none; /* Quitar el contorno del campo de entrada al hacer clic */
+    
+  }
+  
+  .form-container2 button {
+    width: 50%; /* Ancho del botón igual al formulario */
+    padding: 11px; /* Espacio interno del botón */
+    background-color: #000000; /* Color de fondo del botón */
+    color: #fff; /* Color del texto del botón */
+    border: none; /* Quitar borde del botón */
+    border-radius: 10px; /* Borde redondeado del botón */
+    cursor: pointer; /* Cambiar el cursor al pasar sobre el botón */
+    margin-left: 70px;
+  }
+  
+  .form-container2 button:hover {
+    background-color: #e62222; /* Cambiar el color de fondo al pasar el cursor */
+  }
+  .form-container2 form:hover {
     box-shadow: var(--boxshadow);
-}
-
+    background-color:var(--colorwhite);;
+  }
+  

@@ -1,0 +1,51 @@
+
+.fondito2 {
+    background-color:#f2f2f2;
+    
+    }
+
+table {
+    width:  100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    font-family: var(--tipoletra);
+    font-size: 20px;
+  }
+  
+  /* Estilo para las filas pares */
+  tbody tr:nth-child(even) {
+    background-color: rgb(244, 248, 237)
+  }
+  
+  /* Estilo para las filas impares */
+  tbody tr:nth-child(odd) {
+    background-color: #ccc;
+  }
+  
+  /* Cambiar el color al pasar el mouse */
+  tbody tr:hover {
+    background-color: #f1eeee;
+  }
+
+  .busqueda-container {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  padding-bottom: 20px;
+  
+  
+}
+ 
+.searchs{
+    border-radius: 20px; /* Agrega bordes redondos */
+    border: none; /* Elimina los bordes */
+    padding: 9px 40px; /* Ajusta el relleno para aumentar el tamaño del botón */
+    font-size: 16px;
+}
+

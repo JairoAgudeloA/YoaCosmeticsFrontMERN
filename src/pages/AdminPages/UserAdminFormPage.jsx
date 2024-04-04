@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useUser } from '../../context/UserContext'
 import {  useForm } from 'react-hook-form'
 import { useNavigate, useParams } from 'react-router-dom'
+import '../../assets/styles/pages/UserAdminFormPage.css'
 
 const UserAdminFormPage = () => {
     const { register, handleSubmit, formState: { errors }, setValue } = useForm();
@@ -37,7 +38,7 @@ const UserAdminFormPage = () => {
 
 return (
     <>
-    <section>
+    <section className="form-container">
         <form onSubmit={onSubmit}>
             {params.id ? <h1>Editar Usuario</h1> : <h1>Crear Usuario</h1>}
             <div>
@@ -89,7 +90,7 @@ return (
                 </select>
                 {errors.role && <span>Este campo es requerido</span>}
             </div>
-            <div>
+            <div className="parbotones">
                 {params.id ? <button type="submit">Editar</button> : <button type="submit">Crear</button>}
                 <button onClick={() => navigate('/admin/users')}>Cancelar</button>
             </div>

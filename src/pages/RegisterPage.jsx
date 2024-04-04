@@ -69,10 +69,10 @@ export const RegisterPage = () => {
           </div>
 
           <button type="submit">Registrarse</button>
-          <p>
+          <h2>
             ¿Ya tienes una cuenta?
             <Link to="/login">
-              Iniciar Sesión</Link></p>
+              Iniciar Sesión</Link></h2>
         </form>
       </section>
     </>
