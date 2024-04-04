@@ -1,0 +1,12 @@
+.form-container button {
+    width: 50%; /* Ancho del botón igual al formulario */
+    padding: 11px; /* Espacio interno del botón */
+    background-color: #000000; /* Color de fondo del botón */
+    color: #fff; /* Color del texto del botón */
+    border: none; /* Quitar borde del botón */
+    border-radius: 10px; /* Borde redondeado del botón */
+    cursor: pointer; /* Cambiar el cursor al pasar sobre el botón */
+    margin-left: 70px;
+    margin: 50px;
+  }
+  

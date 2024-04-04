@@ -10,16 +10,21 @@
   .form-container2 form {
     width: 300px; /* Ancho del formulario */
     padding: 45px; /* Espacio alrededor del formulario */
-
     border-radius: 10px; /* Borde redondeado */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra alrededor del formulario */
     max-width: 400px;
+    background-color: rgba(255, 255, 255, 0.9);
+    margin-top: 80px;
+    margin-bottom: 150px;
+    padding-bottom: 20px;
+    padding-top: 20px;
   }
   
   .form-container2 h1 {
     text-align: center; /* Centrar el título */
     margin-bottom: 20px; /* Espacio inferior del título */
     font-family: var(--tipoletra);
+    margin-top: -20px;
   }
   
   .form-container2 div {
@@ -30,7 +35,7 @@
     display: block; /* Hacer que las etiquetas ocupen una línea completa */
     margin-bottom: 5px; /* Espacio inferior de las etiquetas */
     font-family: var(--tipoletra);
-    font-size: 20PX;
+    font-size: 15px;
   }
   
   .form-container2 input {
@@ -61,3 +66,9 @@
     background-color:var(--colorwhite);;
   }
   
+  .container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 100vh; */
+  }

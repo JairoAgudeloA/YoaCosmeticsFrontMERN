@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useOrder } from '../../context/OrderContext';
+import '../../assets/styles/pages/OrderAdmin.css';
 
 const OrdersAdminPage = () => {
   const { order, getAllOrders, updateOrder } = useOrder();
@@ -92,9 +93,11 @@ const OrdersAdminPage = () => {
           </section>
         </>
       )}
-      <Link to="/admin/dashboard">
-        <button>Volver Tablero</button>
-      </Link>
+      <div className="table-container">
+        <Link to="/admin/dashboard">
+          <button>Volver Tablero</button>
+        </Link>
+      </div>
     </>
   );
 };

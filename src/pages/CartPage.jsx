@@ -6,6 +6,9 @@ import { Link } from 'react-router-dom';
 // import { initMercadoPago, Wallet } from '@mercadopago/sdk-react';
 import { useOrder } from '../context/OrderContext';
 import { useState } from 'react';
+import { getPdf } from '../api/order.js';// Importa la función para generar el PDF
+import '../assets/styles/pages/CartPage.css';
+
 
 const CartPage = () => {
   const [preferenceId, setPreferenceId] = useState(null);
@@ -26,19 +29,45 @@ const CartPage = () => {
   const createOrder = async () => {
     try {
       const orderData = {
-        products: cart.map(product => ({ product: product._id,name:product.name, quantity: product.count, price: product.price, subtotal: product.price * product.count})),
+        products: cart.map(product => ({
+          product: product._id,
+          name: product.name,
+          quantity: product.count,
+          price: product.price,
+          subtotal: product.price * product.count
+        })),
         total: cart.reduce((acc, product) => acc + product.price * product.count, 0)
+      };
+  
+      // Crear la orden y obtener la respuesta
+      const response = await createOrderCart(orderData);
+      const orderId = response.orderData._id; // Obtener el ID de la orden desde la respuesta
+      // Verificar si la respuesta contiene el ID de la orden
+      if (response && response.orderData && orderId) {
+        // Asignar el ID de la orden al estado preferenceId
+        setPreferenceId(response.orderData._id);
+  
+        // Generar el PDF usando la orden creada
+        const pdfBlob = await getPdf({...orderData, _id: orderId});
+  
+        // Descargar el PDF en el navegador
+        const pdfUrl = URL.createObjectURL(new Blob([pdfBlob.data], { type: 'application/pdf' }));
+        const link = document.createElement("a");
+        link.href = pdfUrl;
+        link.download = "cart.pdf";
+        link.click();
+      } else {
+        // Manejar el caso donde no se recibe el ID de la orden en la respuesta
+        console.error("No se pudo obtener el ID de la orden de la respuesta");
       }
-      const response = await createOrderCart(orderData); // Llama a la función de la API para crear la orden
-      setPreferenceId(response.orderData); // Ajusta el estado según la respuesta de la API si es necesario
     } catch (error) {
       console.error(error);
     }
-  }
-  
+  };
+
   return (
     <>
-      <section>
+      <section className="fondito">
         {cart.length > 0 ? (
           <>
             <h1>Carrito de Compras</h1>
@@ -49,7 +78,6 @@ const CartPage = () => {
                   <th>Nombre</th>
                   <th>Precio</th>
                   <th>Cantidad</th>
-                  <th>{/* botones */}</th>
                   <th>Subtotal</th>
                   <th><button onClick={() => dispatch({ type: 'removeallproducts' })}><FaTrashAlt /></button></th>
                 </tr>
@@ -71,6 +99,7 @@ const CartPage = () => {
                         }}
                       />
                     </td>
+                    <td>{product.price * product.count}</td>
                     <td>
                       <div>
                         <button
@@ -87,20 +116,21 @@ const CartPage = () => {
                           }}><FaMinus /></button>
                       </div>
                     </td>
-                    <td>{product.price * product.count}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
             <h2>Total: {cart.reduce((acc, product) => acc + product.price * product.count, 0)}</h2>
-            <button onClick={createOrder}>Pagar</button>
-
-            
+            <div className="carroboton">
+              <button onClick={createOrder}>Pagar</button>
+            </div>
           </>
         ) : (
           <>
+            <div className="botonvacio">
             <h1>Carrito de Compras aun vacio</h1>
             <Link to='/'><button>Volver a la tienda</button> </Link>
+            </div>
           </>
         )}
       </section>

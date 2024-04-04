@@ -151,8 +151,9 @@ export const EditPerfil = () => {
             {...register('profileImage')}
           />
         </div>         */}
-          <button type="submit">Guardar</button>   
-          <Link to="/"><button>Volver</button></Link>        
+       
+          <button type="submit">Guardar</button>
+                       
       </form>
       
 

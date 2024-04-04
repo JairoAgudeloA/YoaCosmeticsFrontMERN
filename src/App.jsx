@@ -31,7 +31,7 @@ import { UserProvider } from "./context/UserContext";
 import { CartProvider } from "./context/CartContext";
 import { OrderProvider } from "./context/OrderContext";
 import { useState } from "react";
-import Voucher from "./pages/Voucher";
+
 function App() {
   const [search, setSearch] = useState('');
   return (
@@ -47,17 +47,14 @@ function App() {
                   <Outlet />
                   <Routes>
                     <Route path="/" element={<HomePage search={search} />} />
-                    <Route path="/search/:search" element={<SearchResultsPage search={search} />} />
+                    <Route path="/:search" element={<SearchResultsPage search={search} />} />
                     <Route path="/cart" element={<CartPage />} />
-                    {/* <Route path="/contactus" element={<ContactPage />} /> */}
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/register" element={<RegisterPage />} />
-                    <Route path="/voucher" element={<Voucher />} />
 
                     {/* Futuras rutas de usuarios logueados */}
                     <Route element={<ProtectedRoute/> }>
                       <Route path="/profile" element={<EditPerfil />} />
-                      {/* <Route path="/profile/:User" element={<EditPerfil />} /> */}
                     </Route>
 
                     {/* Futuras rutas de los admin */}
